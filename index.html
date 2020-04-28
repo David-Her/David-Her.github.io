@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <script type="text/javascript" src="corsRequestTutorial_GET_and_POST.js"></script>
-    </head>
-    <body>
-        <h1>Altair SmartWorks Meteorological Station</h1>
-        <h2>Average Tempertures in the last:</h2>
-        <h3>24 hours:</h3><input type="text" id="day"></input>
-        <h3>Week:</h3><input type="text" id="week"></input>
-        <h3>Month:</h3><input type="text" id="month"></input>
-        <p>
-        <button onclick="calculateRequests()">Get Data</button></p>
-        <button onclick="sendRequests()">Send Data</button></p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KyPro Systems</title>
+    <link href="css/bs/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/remote/dashboard.css" rel="stylesheet"> -->
+    <script type="text/javascript">window.onload = function(){ document.getElementById("loading").style.display = "none" }</script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>KyPro Manager Tool</h1>
+        <p>Create digital keys</p> 
+    </div>
+    <div id="loading">
+        <div id="loading-text">
+            <div class="alert alert-warning"><h1>Loading stuff...</h1></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Create a Key</h3>
+                    <p>Guest Name:</p><input type="text" id="inputGuestName" ></input><p>
+                    <p>Room:      </p><input type="text" id="inputRoom"      ></input><p>
+                    <p>From:      </p><input type="text" id="inputFrom"      ></input><p>
+                    <p>To :       </p><input type="text" id="inputTo"        ></input><p>
+                    <p><button onclick="calculateRequests()" id="createButtonId" type="button" class="btn btn-success btn-block btn-lg"><span class="glyphicon glyphicon-ok-circle"></span>Create</button></p>
+             </div>
+             <div class="col-sm-4">
+                <h3>Deleted a Key</h3><input type="text" id="week"></input>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <p><button onclick="sendRequests()" id="createButtonId" type="button" class="btn btn-danger btn-block btn-lg"><span class="glyphicon glyphicon-ok-circle"></span>Delete</button></p>
+            </div>
+            <div class="col-sm-4">
+                <h3>How to</h3><input type="text" id="month"></input>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+        </div>
+    </div>
+    <!-- CORS Request -->
+    <script type="text/javascript" src="corsRequestTutorial_GET_and_POST.js"></script>
+</body>
 </html> 
