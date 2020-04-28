@@ -7,7 +7,7 @@ function sendRequests(){
   var limit=currentDate.setDate(currentDate.getDate() - 365);
   limit=parseInt(currentDate.getTime()/1000);
   // Make the CORS request to Altair SmartWorks to get all the streams between now and the limit (one natural day before).
-  makePostRequest('POST', "http://api.altairsmartcore.com/streams/");
+  makePostRequest('POST', "https://api.altairsmartcore.com/streams/");
 	
 }
 
@@ -78,7 +78,7 @@ function calculateRequests(){
   var limit=currentDate.setDate(currentDate.getDate() - 365);
   limit=parseInt(currentDate.getTime()/1000);
   // Make the CORS request to Altair SmartWorks to get all the streams between now and the limit (one natural day before).
-  makeCorsRequest('GET', "http://api.altairsmartcore.com/devices/distanceSensor@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
+  makeCorsRequest('GET', "https://api.altairsmartcore.com/devices/distanceSensor@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
  
 }
 
@@ -137,7 +137,7 @@ function makeCorsRequest(meth, url, timePeriod) {
 
   xhr.onerror = function() {
     alert('There was an error making the request.');
-	console.log('There was an error making the request.');
+    console.log('There was an error making the request.');
   };
 
   xhr.send();
