@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KyPro Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+
+    <!-- From the example of a table-->
+    <!-- https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=table-with-add-and-delete-row-feature -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Until here-->
+    
+    <link rel="stylesheet" href="js/TableStyle.css">
+    <script type="text/javascript" src = "js/TableTest.js"> </script>
     <link href="css/bs/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="css/remote/dashboard.css" rel="stylesheet"> -->
     <script type="text/javascript">window.onload = function(){ document.getElementById("loading").style.display = "none" }</script>
@@ -21,29 +34,68 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>Create a Key</h3>
-                    <p>Guest Name:</p><input type="text" id="inputGuestName" ></input><p>
-                    <p>Room:      </p><input type="text" id="inputRoom"      ></input><p>
-                    <p>From:      </p><input type="text" id="inputFrom"      ></input><p>
-                    <p>To :       </p><input type="text" id="inputTo"        ></input><p>
-                    <p><button onclick="calculateRequests()" id="createButtonId" type="button" class="btn btn-success btn-block btn-lg"><span class="glyphicon glyphicon-ok-circle"></span>Create</button></p>
-             </div>
-             <div class="col-sm-4">
-                <h3>Deleted a Key</h3><input type="text" id="week"></input>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-                <p><button onclick="sendRequests()" id="createButtonId" type="button" class="btn btn-danger btn-block btn-lg"><span class="glyphicon glyphicon-ok-circle"></span>Delete</button></p>
+                <div class="table-responsive">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8"><h2>Active <b> Keys</b></h2></div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Guest</th>
+                                    <th>Room</th>
+                                    <th>Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Administration</td>
+                                    <td>(171) 555-2222</td>
+                                    <td>
+                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Peter Parker</td>
+                                    <td>Customer Service</td>
+                                    <td>(313) 555-5735</td>
+                                    <td>
+                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fran Wilson</td>
+                                    <td>Human Resources</td>
+                                    <td>(503) 555-9931</td>
+                                    <td>
+                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    </td>
+                                </tr>      
+                            </tbody>
+                        </table>
+                    </div>
+                </div>     
+                <button type="button" class="btn btn-info add-new btn-block btn-lg"><i class="fa fa-plus"></i> Add New Key</button>
+                <button type="button" onclick="getKeysFunction()" class="btn btn-dark add-new btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
             </div>
-            <div class="col-sm-4">
-                <h3>How to</h3><input type="text" id="month"></input>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-        </div>
+            <h3>How to</h3><input type="text" id="month"></input>
+            <p>To create a key press ...</p>
+            <p>To delete a key press ...</p>
     </div>
     <!-- CORS Request -->
-    <script type="text/javascript" src="corsRequestTutorial_GET_and_POST.js"></script>
+    <script type="text/javascript" src="js/getKeys.js"></script>
+    <script type="text/javascript" src="js/createKeys.js"></script>
+
 </body>
 </html> 
