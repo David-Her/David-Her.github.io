@@ -47,7 +47,8 @@
                                 <tr>
                                     <th>Guest</th>
                                     <th>Room</th>
-                                    <th>Active</th>
+                                    <th>From</th>
+                                    <th>To</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -55,6 +56,7 @@
                                 <tr>
                                     <td>John Doe</td>
                                     <td>Administration</td>
+                                    <td>(171) 555-2222</td>
                                     <td>(171) 555-2222</td>
                                     <td>
                                         <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
@@ -66,6 +68,7 @@
                                     <td>Peter Parker</td>
                                     <td>Customer Service</td>
                                     <td>(313) 555-5735</td>
+                                    <td>(171) 555-2222</td>
                                     <td>
                                         <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                         <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -76,6 +79,7 @@
                                     <td>Fran Wilson</td>
                                     <td>Human Resources</td>
                                     <td>(503) 555-9931</td>
+                                    <td>(171) 555-2222</td>
                                     <td>
                                         <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                         <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -87,7 +91,8 @@
                     </div>
                 </div>     
                 <button type="button" class="btn btn-info add-new btn-block btn-lg"><i class="fa fa-plus"></i> Add New Key</button>
-                <button type="button" onclick="getKeysFunction()" class="btn btn-dark add-new btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
+                <button type="button" onclick="getKeysFunction()" class="btn btn-dark btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
+                <button type="button" onclick="testAddRow()" class="btn btn-secondary btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Test Add row</button>
             </div>
             <h3>How to</h3><input type="text" id="month"></input>
             <p>To create a key press ...</p>
@@ -96,6 +101,7 @@
     <!-- CORS Request -->
     <script type="text/javascript" src="js/getKeys.js"></script>
     <script type="text/javascript" src="js/createKeys.js"></script>
+    <script type="text/javascript" src="js/deleteKeys.js"></script>
 
 </body>
 </html> 

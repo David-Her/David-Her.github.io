@@ -1,35 +1,10 @@
-function testAddRow(){
-  console.log("Add Row");	
-  
-  $('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").html();
-  
-  var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td>A</td>' +
-            '<td>B</td>' +
-            '<td>C</td>' +
-			      '<td>D</td>' +
-			      '<td>' + actions + '</td>' +
-            '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-  
-  
-  
-  
-}
-
-
-
-function sendKey(){
+function deleteKey(id_dev){
   console.log("In send request");
-  makePostRequest('POST', "https://api.altairsmartcore.com/streams/");
+  deleteRequest('DELETE', "https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/",id_dev);
 	
 }
 
-function makePostRequest(method, url){
+function deleteRequest(method, url, id_dev){
   var xhr = new XMLHttpRequest();
   var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
   var d = new Date();
@@ -78,10 +53,10 @@ function makePostRequest(method, url){
   xhr.setRequestHeader('Apikey', apikey);
   //xhr.setRequestHeader('Accept', 'application/json');
   //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
-  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-  //xhr.setRequestHeader('Data', data);
- 
+  //xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.setRequestHeader('id_developer', id_dev);
+  
   console.log(data);
-  xhr.send(JSON.stringify(data));
+  xhr.send();
   
 }

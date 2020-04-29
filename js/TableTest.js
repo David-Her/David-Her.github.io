@@ -9,6 +9,7 @@ $(document).ready(function(){
             '<td><input type="text" class="form-control" name="name" id="name"></td>' +
             '<td><input type="text" class="form-control" name="department" id="department"></td>' +
             '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+			'<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
 			'<td>' + actions + '</td>' +
         '</tr>';
     	$("table").append(row);		
@@ -50,5 +51,6 @@ $(document).ready(function(){
 	$(document).on("click", ".delete", function(){
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
+		deleteKey();
     });
 });
