@@ -1,17 +1,21 @@
 function emptyKey() {
-  var name;
+  var guest;
   var start;
   var end;
   var room;
   var valid;
   var active;
+  var id_dev;
+  var keyId;
 	this.init = function(){
-		this.name  = "";
-		this.start = "NO";
-		this.end   = "NO";
-		this.room  = "";
-		this.valid = false;
+		this.guest  = null;
+		this.start  = null;
+		this.end    = null;
+		this.room   = null;
+		this.valid  = false;
 		this.active = false;
+    this.id_dev = null;
+    this.keyId  = null;
 	}
 }
 
@@ -73,11 +77,9 @@ function getRequest(url, timePeriod) {
   xhr.onload = function() {
     var text = xhr.responseText;
     // Print the value returned by decode function in each input box.
-    switch(timePeriod){
-      case 'day': document.getElementById('numOfKeys').value=decode(text); break;
-      case 'week': document.getElementById('week').value=decode(text); break;
-      case 'month': document.getElementById('month').value=decode(text); break;
-    }
+    var numOfKeys = decode(text);
+    console.log("numOfKeys: " + numOfKeys);
+    document.getElementById('header_numOfKeys').text=numOfKeys;
   };
 
   xhr.onerror = function() {
@@ -92,17 +94,16 @@ function getRequest(url, timePeriod) {
 function decode(text){
   // Parse the text returned from the request into a JSON object.
   console.log("In decode");
-  console.log(text);
+  //console.log(text);
   obj = JSON.parse(text);
   console.log(obj);
   var temp=0;
   var avg=0;
-  // Get the temperature for each data set returned in the request (one for every hour).
   for(var i=0; i<obj.result.length; i++){
-    console.log("Obj #"+i);
-    temp=obj.result[i].data.temp;
-    console.log(obj.result[i].data.temp)
-    avg+=parseFloat(temp);
+    console.log("Key #"+i);
+    temp=obj.result[i].id_developer;
+    console.log(temp)
+    testAddRow(obj.result[i].data.guest, obj.result[i].data.room, obj.result[i].data.start, obj.result[i].data.end, obj.result[i].data.key)
   }
   // return avg=(parseFloat(avg)/i).toFixed(2);
   return obj.result.length;

@@ -1,20 +1,49 @@
-function testAddRow(){
+function testAddRow(inGuest, inRoom, inFrom, inTo, inKey){
   console.log("Add Row");	
   
   $('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();
   
   var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td>A</td>' +
-            '<td>B</td>' +
-            '<td>C</td>' +
-			      '<td>D</td>' +
-			      '<td>' + actions + '</td>' +
+  var row = '<tr>' +
+            '<td>'+inGuest+'</td>' +
+            '<td>'+inRoom+'</td>' +
+            '<td>'+inFrom+'</td>' +
+            '<td>'+inTo+'</td>' +
+            '<td>'+inKey+'</td>' +
+            '<td>'+ actions + '</td>' +
             '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
+  $("table").append(row);		
+  // Change the icon from .edit to .add
+  //$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+  $('[data-toggle="tooltip"]').tooltip();
+  
+  var empty = false;
+  var input = $(this).parents("tr").find('input[type="text"]');
+  
+  input.each(function(){
+    if(!$(this).val())
+    {
+      $(this).addClass("error");
+      empty = true;
+    }
+    else
+    {
+      $(this).removeClass("error");
+    }
+  });
+  
+  $(this).parents("tr").find(".error").first().focus();
+  
+  if(!empty)
+  {
+    input.each(function(){
+      $(this).parent("td").html($(this).val());
+    });			
+    $(this).parents("tr").find(".add, .edit").toggle();
+    $(".add-new").removeAttr("disabled");
+  }
+  
   
   
   
