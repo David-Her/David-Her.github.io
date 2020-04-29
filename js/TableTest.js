@@ -10,7 +10,13 @@ $(document).ready(function(){
             '<td><input type="text" class="form-control" name="department" id="department"></td>' +
             '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
 			'<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-			'<td>' + actions + '</td>' +
+			'<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+			//'<td>' + actions + '</td>' +
+			'<td>'+
+            '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>'+
+            '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>'+
+            '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>'+
+            '</td>'+
         '</tr>';
     	$("table").append(row);		
 		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
@@ -30,13 +36,17 @@ $(document).ready(function(){
 		});
 		$(this).parents("tr").find(".error").first().focus();
 		if(!empty){
+			var newKeyArr = [];
 			input.each(function(){
+				console.log("INPUT: " + $(this).val());
+				newKeyArr.push($(this).val());
+				console.log(newKeyArr);
 				$(this).parent("td").html($(this).val());
 			});			
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
 			// Send keys
-			sendKey();
+			sendKey(newKeyArr);
 		}
     });
 	// Edit row on edit button click
@@ -49,8 +59,16 @@ $(document).ready(function(){
     });
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(){
+		console.log("On DELETE");
+		//console.log($(this).parents("tr").text());
+		//$(this).parents("tr").find("td:not(:last-child)").each(function(){
+		$(this).parents("tr").find("td:first").each(function(){	
+			console.log($(this).text());
+			var keyToDeleted = $(this).text();
+			deleteKey(keyToDeleted);
+		});	
+//		console.log($(this).html("td"));
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
-		deleteKey();
     });
 });

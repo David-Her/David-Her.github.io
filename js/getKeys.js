@@ -77,9 +77,8 @@ function getRequest(url, timePeriod) {
   xhr.onload = function() {
     var text = xhr.responseText;
     // Print the value returned by decode function in each input box.
-    var numOfKeys = decode(text);
-    console.log("numOfKeys: " + numOfKeys);
-    document.getElementById('header_numOfKeys').text=numOfKeys;
+    objectWithKeys = decode(text);
+    console.log(objectWithKeys);    
   };
 
   xhr.onerror = function() {
@@ -103,9 +102,13 @@ function decode(text){
     console.log("Key #"+i);
     temp=obj.result[i].id_developer;
     console.log(temp)
-    testAddRow(obj.result[i].data.guest, obj.result[i].data.room, obj.result[i].data.start, obj.result[i].data.end, obj.result[i].data.key)
+    testAddRow(obj.result[i].data.key, obj.result[i].data.guest, obj.result[i].data.room, obj.result[i].data.start, obj.result[i].data.end)
+    
   }
   // return avg=(parseFloat(avg)/i).toFixed(2);
-  return obj.result.length;
+  document.getElementById('header_numOfKeys').text = obj.result.length;
+  return obj.result;
 }
-    
+
+// Globarl variable with the list of keys
+var objectWithKeys = null;

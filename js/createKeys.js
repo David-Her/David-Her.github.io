@@ -11,7 +11,12 @@ function testAddRow(inGuest, inRoom, inFrom, inTo, inKey){
             '<td>'+inFrom+'</td>' +
             '<td>'+inTo+'</td>' +
             '<td>'+inKey+'</td>' +
-            '<td>'+ actions + '</td>' +
+//            '<td>'+ actions + '</td>' +    
+            '<td>'+
+            '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>'+
+            '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>'+
+            '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>'+
+            '</td>'+
             '</tr>';
   $("table").append(row);		
   // Change the icon from .edit to .add
@@ -43,22 +48,17 @@ function testAddRow(inGuest, inRoom, inFrom, inTo, inKey){
     $(this).parents("tr").find(".add, .edit").toggle();
     $(".add-new").removeAttr("disabled");
   }
-  
-  
-  
-  
-  
 }
 
 
 
-function sendKey(){
+function sendKey(newKeyArr){
   console.log("In send request");
-  makePostRequest('POST', "https://api.altairsmartcore.com/streams/");
+  makePostRequest('POST', "https://api.altairsmartcore.com/streams/", newKeyArr);
 	
 }
 
-function makePostRequest(method, url){
+function makePostRequest(method, url, newKeyArr){
   var xhr = new XMLHttpRequest();
   var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
   var d = new Date();
@@ -69,19 +69,16 @@ function makePostRequest(method, url){
     "at":timeNow,
     "device":"KeysDevice@davidnike18.davidnike18",
     "data":{
-      "key"   :"UYZ890",
-      "guest" :"Anna",
-      "start" :Date.UTC(2010, 01, 28),
-      "end"   :Date.UTC(2030, 02, 18),
-      "room"  :randomNummer,
+      "key"   :newKeyArr[0],
+      "room"  :newKeyArr[2],
+      "guest" :newKeyArr[1],
+      "start" :newKeyArr[3],
+      //"end"   :Date.UTC(2030, 02, 18),
+      "end"   :newKeyArr[4],
       "valid" :"true",
       "active":"false"
     }
   };
-  
-  
-  
-  
   
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.

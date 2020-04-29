@@ -1,33 +1,31 @@
-function deleteKey(id_dev){
-  console.log("In send request");
-  deleteRequest('DELETE', "https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/",id_dev);
-	
+function deleteKey(keyToDeleted){
+  console.log("In delete request");
+  console.log("Key to delete: " + keyToDeleted);
+  var id_dev = getDevId(keyToDeleted);
+  console.log("Stream to delete: " + id_dev);
+  var urlDelete1 = "https://api.altairsmartcore.com/streams/"+id_dev+"/";
+  var urlDelete2 = "https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/"+id_dev+"/";
+  deleteRequest('DELETE', urlDelete1, id_dev);
+//  deleteRequest('DELETE', "https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams",id_dev);
 }
+
+function getDevId(keyToDeleted){
+  console.log("Function to get the dev ID");
+  console.log(this.objectWithKeys);
+  for(var i=0; i<this.objectWithKeys.length; i++){
+    console.log("Key #"+i+" " + this.objectWithKeys[i].data.key);
+    
+    if(this.objectWithKeys[i].data.key == keyToDeleted){
+      console.log("KeyFounded");
+      return this.objectWithKeys[i].id_developer;
+      break;
+    }
+  }
+}
+
 
 function deleteRequest(method, url, id_dev){
   var xhr = new XMLHttpRequest();
-  var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
-  var d = new Date();
-  var randomNummer = Math.floor(Math.random()*(999-100+1)+100);
-  var data = 
-  {
-    "protocol":"v2",
-    "at":timeNow,
-    "device":"KeysDevice@davidnike18.davidnike18",
-    "data":{
-      "key"   :"UYZ890",
-      "guest" :"Anna",
-      "start" :Date.UTC(2010, 01, 28),
-      "end"   :Date.UTC(2030, 02, 18),
-      "room"  :randomNummer,
-      "valid" :"true",
-      "active":"false"
-    }
-  };
-  
-  
-  
-  
   
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
@@ -51,12 +49,11 @@ function deleteRequest(method, url, id_dev){
    // Add the needed headers to make the CORS request to Altair SmartWorks.
   //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
   xhr.setRequestHeader('Apikey', apikey);
-  //xhr.setRequestHeader('Accept', 'application/json');
+  xhr.setRequestHeader('Accept', '*/*');
   //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
-  //xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-  xhr.setRequestHeader('id_developer', id_dev);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  //xhr.setRequestHeader('id_developer', id_dev);
   
-  console.log(data);
   xhr.send();
   
 }
