@@ -1,20 +1,27 @@
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();
+	var randomKey = null;
+	getKeysFunction();
 	// Append table with add row form on add new button click
     $(".add-new").click(function(){
 		$(this).attr("disabled", "disabled");
 		var index = $("table tbody tr:last-child").index();
+	    var randomNummer = Math.floor(Math.random()*(999-100+1)+100);
+		var randomLetters = makeid(3);
+		randomKey = randomLetters+randomNummer.toString();
+		console.log(randomKey);
+//		Key	Guest	Room	From	To
         var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-			'<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-			'<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+            '<td>'+randomKey+'</td>' +
+            '<td><input type="text" class="form-control" name="guest" id="guest"></td>' +
+            '<td><input type="text" class="form-control" name="room"  id="room"></td>' +
+			'<td><input type="text" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" class="form-control" name="from"  id="phone"></td>' +
+			'<td><input type="text" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" class="form-control" name="to"    id="to"></td>' +
 			//'<td>' + actions + '</td>' +
 			'<td>'+
-            '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>'+
-            '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>'+
+            '<a class="add"    title="Add"    data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>'+
+            '<a class="edit"   title="Edit"   data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>'+
             '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>'+
             '</td>'+
         '</tr>';
@@ -36,24 +43,26 @@ $(document).ready(function(){
 		});
 		$(this).parents("tr").find(".error").first().focus();
 		if(!empty){
-			var newKeyArr = [];
+			console.log("Key in add:" + randomKey);
+			var newKeyArr = [randomKey];
 			input.each(function(){
 				console.log("INPUT: " + $(this).val());
 				newKeyArr.push($(this).val());
-				console.log(newKeyArr);
 				$(this).parent("td").html($(this).val());
 			});			
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
 			// Send keys
+			console.log("Key to send: " + newKeyArr);
 			sendKey(newKeyArr);
 		}
     });
 	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){		
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+	$(document).on("click", ".edit", function(){
+		$(this).parents("tr").find("td:not(:first-child):not(:last-child)").each(function(){
 			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-		});		
+		});
+
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
     });
@@ -72,3 +81,13 @@ $(document).ready(function(){
 		$(".add-new").removeAttr("disabled");
     });
 });
+
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}

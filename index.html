@@ -17,7 +17,6 @@
     <!-- Until here-->
     
     <link rel="stylesheet" href="js/TableStyle.css">
-    <script type="text/javascript" src = "js/TableTest.js"> </script>
     <link href="css/bs/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="css/remote/dashboard.css" rel="stylesheet"> -->
     <script type="text/javascript">window.onload = function(){ document.getElementById("loading").style.display = "none" }</script>
@@ -48,8 +47,8 @@
                                     <th data-sortable="true">Key</th>
                                     <th data-sortable="true">Guest</th>
                                     <th data-sortable="true">Room</th>
-                                    <th data-sortable="true">From</th>
-                                    <th data-sortable="true">To</th>
+                                    <th data-sortable="true">Check-in</th>
+                                    <th data-sortable="true">Check-out</th>
                                     <th data-sortable="true">Actions</th>
                                 </tr>
                             </thead>
@@ -72,15 +71,17 @@
                         </table>
                     </div>
                 </div>     
-                <button type="button" class="btn btn-info add-new btn-block btn-lg"><i class="fa fa-plus"></i> Add New Key</button>
-                <button type="button" onclick="getKeysFunction()" class="btn btn-dark btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
-                <button type="button" onclick="testAddRow()" class="btn btn-secondary btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Test Add row</button>
             </div>
-            <h3>How to</h3><input type="text" id="month"></input>
+            <button type="button" class="btn btn-info add-new btn-block btn-lg"><i class="fa fa-plus"></i> Add New Key</button>
+            <button type="button" onclick="getKeysFunction()" class="btn btn-dark btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
+            <button type="button" onclick="testAddRow()" class="btn btn-secondary btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Test Add row</button>
+            <h3>How to</h3>
             <p>To create a key press ...</p>
             <p>To delete a key press ...</p>
+            <input type="text" id="month"></input>
     </div>
     <!-- CORS Request -->
+    <script type="text/javascript" src = "js/TableTest.js"> </script>
     <script type="text/javascript" src="js/getKeys.js"></script>
     <script type="text/javascript" src="js/createKeys.js"></script>
     <script type="text/javascript" src="js/deleteKeys.js"></script>

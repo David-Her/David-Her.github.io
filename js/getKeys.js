@@ -19,14 +19,6 @@ function emptyKey() {
 	}
 }
 
-//key: "UYZ"
-//guest: "Anna"
-//start: 1267315200000
-//end: 1900022400000
-//room: "103"
-//valid: "true"
-//active: "false" 
-
 // Calculate the amount of time for each query.
 function getKeysFunction(){
   var since = 365;

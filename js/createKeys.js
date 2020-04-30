@@ -62,7 +62,6 @@ function makePostRequest(method, url, newKeyArr){
   var xhr = new XMLHttpRequest();
   var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
   var d = new Date();
-  var randomNummer = Math.floor(Math.random()*(999-100+1)+100);
   var data = 
   {
     "protocol":"v2",
