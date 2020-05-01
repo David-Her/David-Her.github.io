@@ -181,12 +181,11 @@ function parseDate(inDate1, inDate2)
 	var monate2 = parseInt(inDate2.charAt(3)+inDate2.charAt(4));
 	var jahr2   = parseInt(inDate2.charAt(6)+inDate2.charAt(7)+inDate2.charAt(8)+inDate2.charAt(9));
 	
-	console.log(Date.now());
-	console.log(Date.UTC(jahr1, monate1, tag1, 0, 0, 0));
-	
+	// console.log(Date.now());
+	// console.log(Date.UTC(jahr1, monate1-1, tag1, 0, 0, 0));
 	
 	if(  (Date.UTC(jahr2, monate2, tag2, 0, 0, 0) >= Date.UTC(jahr1, monate1, tag1, 0, 0, 0))
-	  && (Date.UTC(jahr1, monate1, tag1, 0, 0, 0) >= Date.now() ) )
+	  && (Date.UTC(jahr1, monate1-1, tag1, 0, 0, 0) >= Date.now() ) )
 	{
 		result = true;
 	}
