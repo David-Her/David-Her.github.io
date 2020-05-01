@@ -2,6 +2,8 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();
 	var randomKey = null;
+	var newKeyArr = [false, false, false, false, false];
+	var indexFalse = [1,2,3,4];
 	getKeysFunction();
 	// Append table with add row form on add new button click
     $(".add-new").click(function(){
@@ -11,6 +13,8 @@ $(document).ready(function(){
 		var randomLetters = makeid(3);
 		randomKey = randomLetters+randomNummer.toString();
 		console.log(randomKey);
+		newKeyArr[0] = randomKey;
+		indexFalse = [1,2,3,4];
 //		Key	Guest	Room	From	To
         var row = '<tr>' +
             '<td>'+randomKey+'</td>' +
@@ -33,23 +37,55 @@ $(document).ready(function(){
 	$(document).on("click", ".add", function(){
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
+	    //var input = $(this).parents("tr").find("td:not(:first-child):not(:last-child)");
+		
         input.each(function(){
 			if(!$(this).val()){
 				$(this).addClass("error");
 				empty = true;
-			} else{
-                $(this).removeClass("error");
+				//newKeyArr.push(false);
+				indexFalse.push(indexFalse[0]);
+			}
+			else
+			{
+				if( (indexFalse[0]>2) && (isValidDate($(this).val())))
+				{ // Check-in/out
+					console.log("CHECK-In value: index "+indexFalse[0]);
+					newKeyArr[indexFalse[0]] = $(this).val();
+					if(parseDate(newKeyArr[3], $(this).val()))
+					{
+						$(this).parent("td").html($(this).val());
+						$(this).removeClass("error");
+					}
+					else
+					{	// If the date does not mach
+						$(this).addClass("error");
+						empty = true;
+						//newKeyArr.push(false);
+						indexFalse.push(indexFalse[0]);						
+					}
+				}
+				else if ((indexFalse[0] < 3))
+				{ // Guest or Room
+					newKeyArr[indexFalse[0]] = $(this).val();
+					$(this).parent("td").html($(this).val());
+					$(this).removeClass("error");
+				}
+				else
+				{
+					$(this).addClass("error");
+					empty = true;
+					//newKeyArr.push(false);
+					indexFalse.push(indexFalse[0]);
+				}
             }
+			indexFalse.shift();
 		});
+		console.log("False index = "+ indexFalse + "[0] = " + indexFalse[0]);
+		console.log("Current Array: " + newKeyArr)
 		$(this).parents("tr").find(".error").first().focus();
-		if(!empty){
-			console.log("Key in add:" + randomKey);
-			var newKeyArr = [randomKey];
-			input.each(function(){
-				console.log("INPUT: " + $(this).val());
-				newKeyArr.push($(this).val());
-				$(this).parent("td").html($(this).val());
-			});			
+		if(!empty)
+		{
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
 			// Send keys
@@ -62,7 +98,13 @@ $(document).ready(function(){
 		$(this).parents("tr").find("td:not(:first-child):not(:last-child)").each(function(){
 			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});
-
+		$(this).parents("tr").find("td:first").each(function(){	
+			console.log("Key to edit = " + $(this).text());
+			randomKey = $(this).text(); // Keep the same key value when editing
+			newKeyArr[0] = randomKey;
+			indexFalse = [1,2,3,4];
+			//newKeyArr.push(randomKey);
+		});	
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
     });
@@ -90,4 +132,63 @@ function makeid(length) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
    }
    return result;
+}
+
+function isValidDate(inDate) 
+{
+   var result           = false;
+   // console.log(inDate + " length= "+inDate.length);
+	if( (inDate.length == 10)
+		&& (inDate.charCodeAt(0) > 47) // d at least 0
+        && (inDate.charCodeAt(0) < 52) // d smaller that 4
+		&& (inDate.charCodeAt(1) > 47) // d at least 0
+		&& (inDate.charCodeAt(1) < 58) // d maximun 9
+	   
+		&& (inDate.charCodeAt(2) == 46)// . equlas point
+
+	    && (inDate.charCodeAt(3) > 47) // m at least 0
+		&& (inDate.charCodeAt(3) < 50) // m smaller than 2
+		&& (inDate.charCodeAt(4) > 47) // m
+		&& (inDate.charCodeAt(4) < 58) // m 
+
+		&& (inDate.charCodeAt(5) == 46) // .
+
+	    && (inDate.charCodeAt(6) > 47) // y
+	    && (inDate.charCodeAt(6) < 58) // y
+		&& (inDate.charCodeAt(7) > 47) // y
+		&& (inDate.charCodeAt(7) < 58) // y
+		&& (inDate.charCodeAt(8) > 47) // y
+		&& (inDate.charCodeAt(8) < 58) // y
+		&& (inDate.charCodeAt(9) > 47) // y
+		&& (inDate.charCodeAt(9) < 58) ) // y
+	{
+		result = true;
+	}
+	
+   return result;
+}
+
+
+function parseDate(inDate1, inDate2) 
+{
+	var result = false;
+	
+	var tag1    = parseInt(inDate1.charAt(0)+inDate1.charAt(1));
+	var monate1 = parseInt(inDate1.charAt(3)+inDate1.charAt(4));
+	var jahr1   = parseInt(inDate1.charAt(6)+inDate1.charAt(7)+inDate1.charAt(8)+inDate1.charAt(9));
+	
+	var tag2    = parseInt(inDate2.charAt(0)+inDate2.charAt(1));
+	var monate2 = parseInt(inDate2.charAt(3)+inDate2.charAt(4));
+	var jahr2   = parseInt(inDate2.charAt(6)+inDate2.charAt(7)+inDate2.charAt(8)+inDate2.charAt(9));
+	
+	console.log(Date.now());
+	console.log(Date.UTC(jahr1, monate1, tag1, 0, 0, 0));
+	
+	
+	if(  (Date.UTC(jahr2, monate2, tag2, 0, 0, 0) >= Date.UTC(jahr1, monate1, tag1, 0, 0, 0))
+	  && (Date.UTC(jahr1, monate1, tag1, 0, 0, 0) >= Date.now() ) )
+	{
+		result = true;
+	}
+	return result;
 }

@@ -69,11 +69,10 @@ function makePostRequest(method, url, newKeyArr){
     "device":"KeysDevice@davidnike18.davidnike18",
     "data":{
       "key"   :newKeyArr[0],
-      "room"  :newKeyArr[2],
       "guest" :newKeyArr[1],
-      "start" :newKeyArr[3],
-      //"end"   :Date.UTC(2030, 02, 18),
-      "end"   :newKeyArr[4],
+      "room"  :newKeyArr[2],
+      "start" :newKeyArr[3], // Date.UTC(2030, 02, 18)
+      "end"   :newKeyArr[4], // Date.UTC(2030, 02, 18)
       "valid" :"true",
       "active":"false"
     }
