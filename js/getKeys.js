@@ -110,8 +110,8 @@ function decode(text){
     testAddRow(obj.result[i].data.key, obj.result[i].data.guest, obj.result[i].data.room, obj.result[i].data.start, obj.result[i].data.end)
     
   }
-  // return avg=(parseFloat(avg)/i).toFixed(2);
-  document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
+  // to change the table title:
+  //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
   return obj.result;
 }
 
