@@ -111,7 +111,7 @@ function decode(text){
     
   }
   // return avg=(parseFloat(avg)/i).toFixed(2);
-  document.getElementById('header_numOfKeys').innerHTML = obj.result.length;
+  document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
   return obj.result;
 }
 

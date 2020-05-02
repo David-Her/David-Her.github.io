@@ -5,26 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KyPro Systems</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans"> 
 
     <!-- From the example of a table-->
     <!-- https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=table-with-add-and-delete-row-feature -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    
     <!-- Until here-->
     
     <link rel="stylesheet" href="js/TableStyle.css">
     <link href="css/bs/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="css/remote/dashboard.css" rel="stylesheet"> -->
+    <link href="css/remote/dashboard.css" rel="stylesheet">
     <script type="text/javascript">window.onload = function(){ document.getElementById("loading").style.display = "none" }</script>
 </head>
 
 <body>
     <div class="jumbotron text-center">
-        <h1>Key Manager Tool</h1>
+        <h1><b>Key Manager Tool</b></h1>
         <p>By: KyPro Systems</p>
         <p>Version: V.1.0  - 2020</p> 
     </div>
@@ -40,18 +41,18 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <h1><b>Active  Keys: # </b><b id='header_numOfKeys'>0</b></h1></div>
+                                    <h2 id='header_numOfKeys'>Active Keys: #</h2></div>
                             </div>
                         </div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th data-sortable="true">Key</th>
-                                    <th data-sortable="true">Guest</th>
-                                    <th data-sortable="true">Room</th>
-                                    <th data-sortable="true">Check-in</th>
-                                    <th data-sortable="true">Check-out</th>
-                                    <th data-sortable="true">Actions</th>
+                                    <th data-sortable="true" class="text-center">Key</th>
+                                    <th data-sortable="true" class="text-center">Guest</th>
+                                    <th data-sortable="true" class="text-center">Room</th>
+                                    <th data-sortable="true" class="text-center">Check-in</th>
+                                    <th data-sortable="true" class="text-center">Check-out</th>
+                                    <th data-sortable="true" class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,12 +82,16 @@
             <!-- Button to add a new row
             <button type="button" onclick="testAddRow()" class="btn btn-secondary btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Test Add row</button>
             -->
-            <div id="loading2">
-                <div id="loading-text2">
-                    <div class="alert alert-warning"><h1></h1></div>
-                </div>
-            </div>
+        <p></p>
     </div>
+    
+    
+    <!-- Misc libs -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.cookie.js"></script>
+    <script src="js/bs/bootstrap.min.js"></script>
+    <script src="js/bs/bootstrap.touchspin.js"></script>
+    
     <!-- CORS Request -->
     <script type="text/javascript" src = "js/TableTest.js"> </script>
     <script type="text/javascript" src="js/getKeys.js"></script>
