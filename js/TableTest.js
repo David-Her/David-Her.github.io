@@ -4,6 +4,7 @@ $(document).ready(function(){
 	var randomKey = null;
 	var newKeyArr = [false, false, false, false, false];
 	var indexFalse = [1,2,3,4];
+	var fromEdit = false;
 	getKeysFunction();
 	// Append table with add row form on add new button click
     $(".add-new").click(function(){
@@ -15,6 +16,7 @@ $(document).ready(function(){
 		console.log(randomKey);
 		newKeyArr[0] = randomKey;
 		indexFalse = [1,2,3,4];
+		fromEdit = false;
 //		Key	Guest	Room	From	To
         var row = '<tr>' +
             '<td>'+randomKey+'</td>' +
@@ -90,11 +92,16 @@ $(document).ready(function(){
 			$(".add-new").removeAttr("disabled");
 			// Send keys
 			console.log("Key to send: " + newKeyArr);
+			if(fromEdit)
+			{
+				deleteKey(newKeyArr[0]);
+			}
 			sendKey(newKeyArr);
 		}
     });
 	// Edit row on edit button click
 	$(document).on("click", ".edit", function(){
+		fromEdit = true;
 		$(this).parents("tr").find("td:not(:first-child):not(:last-child)").each(function(){
 			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});
