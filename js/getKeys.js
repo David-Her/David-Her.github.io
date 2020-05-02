@@ -53,7 +53,7 @@ function getRequest(url, timePeriod) {
   var apikey= '996367ee330a4ed903e2253780215dba3e72d24556bcc9917dcb6960da207441';
 
   if (!xhr) {
-    alert('CORS not supported');
+    //alert('CORS not supported');
     console.log("CORS not supported");
     return;
   }
@@ -74,10 +74,23 @@ function getRequest(url, timePeriod) {
   };
 
   xhr.onerror = function() {
-    alert('There was an error making the request.');
+    alert('Unable to connect to the server.');
     console.log('There was an error making the request.');
   };
 
+  xhr.onreadystatechange = function() {
+    if (this.status != 200)
+    {
+      alert("Error in the connection with the server.");
+    }
+    else
+    {
+      // var text = xhr.responseText;
+      // objectWithKeys = decode(text);
+      // console.log(objectWithKeys);
+    }
+  };
+  
   xhr.send();
 }
 
@@ -98,7 +111,7 @@ function decode(text){
     
   }
   // return avg=(parseFloat(avg)/i).toFixed(2);
-  document.getElementById('header_numOfKeys').text = obj.result.length;
+  document.getElementById('header_numOfKeys').innerHTML = obj.result.length;
   return obj.result;
 }
 

@@ -24,8 +24,9 @@
 
 <body>
     <div class="jumbotron text-center">
-        <h1>KyPro Manager Tool</h1>
-        <p>Create digital keys</p> 
+        <h1>Key Manager Tool</h1>
+        <p>By: KyPro Systems</p>
+        <p>Version: V.1.0  - 2020</p> 
     </div>
     <div id="loading">
         <div id="loading-text">
@@ -38,7 +39,8 @@
                     <div class="table-wrapper">
                         <div class="table-title">
                             <div class="row">
-                                <div class="col-sm-8"><h2><b>Active  Keys: # </b><a id='header_numOfKeys'>   </a></h2></div>
+                                <div class="col-sm-8">
+                                    <h1><b>Active  Keys: # </b><b id='header_numOfKeys'>0</b></h1></div>
                             </div>
                         </div>
                         <table class="table table-bordered">
@@ -72,13 +74,18 @@
                     </div>
                 </div>     
             </div>
-            <button type="button" class="btn btn-info add-new btn-block btn-lg"><i class="fa fa-plus"></i> Add New Key</button>
+            <button type="button" class="btn btn-success add-new btn-block btn-lg"><i class="fa fa-plus"></i> Create a Key</button>
+            <!-- Button to update the table
             <button type="button" onclick="getKeysFunction()" class="btn btn-dark btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Update table</button>
+            -->
+            <!-- Button to add a new row
             <button type="button" onclick="testAddRow()" class="btn btn-secondary btn-block btn-lg"><i class="glyphicon glyphicon-refresh"></i> Test Add row</button>
-            <h3>How to</h3>
-            <p>To create a key press ...</p>
-            <p>To delete a key press ...</p>
-            <input type="text" id="month"></input>
+            -->
+            <div id="loading2">
+                <div id="loading-text2">
+                    <div class="alert alert-warning"><h1></h1></div>
+                </div>
+            </div>
     </div>
     <!-- CORS Request -->
     <script type="text/javascript" src = "js/TableTest.js"> </script>

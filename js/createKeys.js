@@ -91,11 +91,17 @@ function makePostRequest(method, url, newKeyArr){
   }
 		
   if (!xhr) {
-    alert('CORS not supported');
+    //alert('CORS not supported');
     console.log("CORS not supported");
     return;
   }
   
+  xhr.onreadystatechange = function() {
+    if (this.status != 200)
+    {
+      alert("Error in the connection with the server.");
+    }
+  };
   var apikey= '996367ee330a4ed903e2253780215dba3e72d24556bcc9917dcb6960da207441';
    // Add the needed headers to make the CORS request to Altair SmartWorks.
   //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
