@@ -26,9 +26,9 @@ $(document).ready(function(){
 			'<td><input type="text" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" class="form-control" name="to"    id="to"></td>' +
 			//'<td>' + actions + '</td>' +
 			'<td>'+
-            '<a class="add"    title="Add"    data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>'+
-            '<a class="edit"   title="Edit"   data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>'+
-            '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>'+
+            '<a class="add"    title="Add"    data-toggle="tooltip"><i class="glyphicon glyphicon-ok"></i></a>'+
+            '<a class="edit"   title="Edit"   data-toggle="tooltip"><i class="glyphicon glyphicon-pencil"></i></a>'+
+            '<a class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>'+
             '</td>'+
         '</tr>';
     	$("table").append(row);		
