@@ -191,8 +191,8 @@ function parseDate(inDate1, inDate2)
 	// console.log(Date.now());
 	// console.log(Date.UTC(jahr1, monate1-1, tag1, 0, 0, 0));
 	
-	if(  (Date.UTC(jahr2, monate2, tag2, 0, 0, 0) >= Date.UTC(jahr1, monate1, tag1, 0, 0, 0))
-	  && (Date.UTC(jahr1, monate1-1, tag1, 0, 0, 0) >= Date.now() ) )
+	if(  (Date.UTC(jahr2, monate2-1, tag2, 0, 0, 0) >= Date.UTC(jahr1, monate1-1, tag1, 0, 0, 0))
+	  && (Date.UTC(jahr1, monate1-1, tag1+1, 0, 0, 0) >= Date.now() ) )
 	{
 		result = true;
 	}
