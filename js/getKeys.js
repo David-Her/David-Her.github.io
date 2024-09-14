@@ -35,7 +35,8 @@ function getKeysFunction(){
 
 // Make the actual CORS request.
 function getRequest(url, timePeriod) {
-  console.log("In getRequest");
+  console.log("In getRequest: URL: ");
+  console.log(url);
   // Create the XHR object.
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
