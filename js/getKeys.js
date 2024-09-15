@@ -30,7 +30,13 @@ function getKeysFunction(){
   var limit = currentDate.setDate(currentDate.getDate() - since);
   limit = parseInt(currentDate.getTime()/1000);
   // Make the CORS request to Altair SmartWorks to get all the streams between now and the limit (one natural day before).
+<<<<<<< HEAD
   getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
+=======
+  //getRequest("https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
+  getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
+  
+>>>>>>> 9a92674 (new url)
 }
 
 // Make the actual CORS request.
