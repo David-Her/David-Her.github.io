@@ -33,7 +33,17 @@ function getKeysFunction(){
   //getRequest("https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
   // From Thingsboard CURL
   // curl -v -X GET "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?"
-  getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
+  // getRequest("https://thingsboard.cloud", "day");
+  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day");
+  
+  
+  //curl -v -X GET "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE" \
+  //  -H 'x-authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg' \
+ //   -H 'content-type: application/json' \
+  
+  
+  // getRequest("https://thingsboard.cloud/api/v1/telemetry", "day");
+  // getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/telemetry", "day");
 }
 
 // Make the actual CORS request.
@@ -56,7 +66,10 @@ function getRequest(url, timePeriod) {
     xhr = null;
   }
   // Specify the Meteo apikey (when connecting CORS to your Altair SmartWorks account you must substitute your apikey here).
-  var apikey= '996367ee330a4ed903e2253780215dba3e72d24556bcc9917dcb6960da207441';
+  // ThingBoard Credentials
+  var token = "mvktomg51m6wwigo38fa";
+  var entityId = "e11c4010-711d-11ef-9db3-51985cbac8e9";
+  var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg"; 
 
   if (!xhr) {
     //alert('CORS not supported');
@@ -67,10 +80,17 @@ function getRequest(url, timePeriod) {
   // Add the needed headers to make the CORS request to Altair SmartWorks.
   //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
   // xhr.setRequestHeader('Apikey', apikey);
-  xhr.setRequestHeader('Accept', 'application/json');
+  // xhr.setRequestHeader('Accept', 'application/json');
   //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
-  xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.setRequestHeader('Access-Control', 'Allow-Origin');
   //xhr.setRequestHeader('Access-Control', '*');
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  //"X-Authorization"
+  // xhr.setRequestHeader('X-Authorization', token);
+  xhr.setRequestHeader('X-Authorization', JWT_Token)
+
 
   // Response handlers.
   xhr.onload = function() {
@@ -106,7 +126,7 @@ function getRequest(url, timePeriod) {
 function decode(text){
   // Parse the text returned from the request into a JSON object.
   console.log("In decode");
-  //console.log(text);
+  console.log(text);
   obj = JSON.parse(text);
   console.log(obj);
   var temp=0;
