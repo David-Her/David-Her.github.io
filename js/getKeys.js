@@ -33,7 +33,7 @@ function getKeysFunction(){
   //getRequest("https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
   // From Thingsboard CURL
   // curl -v -X GET "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?"
-  getRequest("http://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
+  getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
 }
 
 // Make the actual CORS request.
