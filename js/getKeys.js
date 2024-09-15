@@ -113,9 +113,9 @@ function getRequest(url, timePeriod) {
     }
     else
     {
-      // var text = xhr.responseText;
-      // objectWithKeys = decode(text);
-      // console.log(objectWithKeys);
+       var text = xhr.responseText;
+       objectWithKeys = decode(text);
+       console.log(objectWithKeys);
     }
   };
   
@@ -125,22 +125,24 @@ function getRequest(url, timePeriod) {
  
 function decode(text){
   // Parse the text returned from the request into a JSON object.
-  console.log("In decode");
+  console.log("In decode:: text:");
   console.log(text);
   obj = JSON.parse(text);
+  console.log("In decode:: obj:");
   console.log(obj);
+  console.log(obj.length);
   var temp=0;
   var avg=0;
-  for(var i=0; i<obj.result.length; i++){
+  for(var i=0; i<obj.length; i++){
     console.log("Key #"+i);
-    temp=obj.result[i].id_developer;
+    temp=obj[i].key;
     console.log(temp)
-    testAddRow(obj.result[i].data.key, obj.result[i].data.guest, obj.result[i].data.room, obj.result[i].data.start, obj.result[i].data.end)
+    //testAddRow(obj[i].data.key, obj[i].data.guest, obj[i].data.room, obj[i].data.start, obj[i].data.end)
     
   }
   // to change the table title:
   //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
-  return obj.result;
+  return obj;
 }
 
 // Globarl variable with the list of keys
