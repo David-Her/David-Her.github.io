@@ -137,6 +137,15 @@ function decode(text){
     console.log("Key #"+i);
     temp=obj[i].key;
     console.log(temp)
+	if (i == 0 ){
+		document.getElementById("k1").innerHTML = obj[i].key;	
+		document.getElementById("v1").innerHTML = obj[i].value;	
+	}else if(i == 1){
+		document.getElementById("k2").innerHTML = obj[i].key;	
+		document.getElementById("v2").innerHTML = obj[i].value;	
+	}
+	// document.getElementById("fname").innerHTML = "New text!";
+	
     //testAddRow(obj[i].data.key, obj[i].data.guest, obj[i].data.room, obj[i].data.start, obj[i].data.end)
     
   }
