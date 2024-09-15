@@ -30,13 +30,10 @@ function getKeysFunction(){
   var limit = currentDate.setDate(currentDate.getDate() - since);
   limit = parseInt(currentDate.getTime()/1000);
   // Make the CORS request to Altair SmartWorks to get all the streams between now and the limit (one natural day before).
-<<<<<<< HEAD
-  getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
-=======
   //getRequest("https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
-  getRequest("https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
-  
->>>>>>> 9a92674 (new url)
+  // From Thingsboard CURL
+  // curl -v -X GET "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?"
+  getRequest("http://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?", "day"); 
 }
 
 // Make the actual CORS request.
@@ -46,10 +43,12 @@ function getRequest(url, timePeriod) {
   // Create the XHR object.
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
+	 console.log("with credentials ");
     // XHR for Chrome/Firefox/Opera/Safari.
     xhr.open('GET', url, true);
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
+	console.log("No credentials ");
     xhr = new XDomainRequest();
     xhr.open('GET', url);
   } else {
@@ -67,10 +66,11 @@ function getRequest(url, timePeriod) {
 
   // Add the needed headers to make the CORS request to Altair SmartWorks.
   //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
-  xhr.setRequestHeader('Apikey', apikey);
+  // xhr.setRequestHeader('Apikey', apikey);
   xhr.setRequestHeader('Accept', 'application/json');
   //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
   xhr.setRequestHeader('Content-Type', 'application/json');
+  //xhr.setRequestHeader('Access-Control', '*');
 
   // Response handlers.
   xhr.onload = function() {
@@ -81,14 +81,15 @@ function getRequest(url, timePeriod) {
   };
 
   xhr.onerror = function() {
-    alert('Unable to connect to the server.');
-    console.log('There was an error making the request.');
+	console.log('There was an error making the request.');
+    //alert('Unable to connect to the server.');
   };
 
   xhr.onreadystatechange = function() {
     if (this.status != 200)
     {
-      alert("Error in the connection with the server.");
+      console.log("Status Not 200 ");
+	  //alert("Error in the connection with the server.");
     }
     else
     {
