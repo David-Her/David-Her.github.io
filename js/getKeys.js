@@ -34,8 +34,9 @@ function getKeysFunction(){
   // From Thingsboard CURL
   // curl -v -X GET "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?"
   // getRequest("https://thingsboard.cloud", "day");
-  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day");
   
+  /// OK 
+  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day"); 
   
   //curl -v -X GET "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE" \
   //  -H 'x-authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg' \
@@ -69,7 +70,7 @@ function getRequest(url, timePeriod) {
   // ThingBoard Credentials
   var token = "mvktomg51m6wwigo38fa";
   var entityId = "e11c4010-711d-11ef-9db3-51985cbac8e9";
-  var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg"; 
+  var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA"; 
 
   if (!xhr) {
     //alert('CORS not supported');
@@ -96,7 +97,8 @@ function getRequest(url, timePeriod) {
   xhr.onload = function() {
     var text = xhr.responseText;
     // Print the value returned by decode function in each input box.
-    objectWithKeys = decode(text);
+    console.log("--- Call decode #1 ");       
+	objectWithKeys = decode(text);
     console.log(objectWithKeys);    
   };
 
@@ -110,11 +112,13 @@ function getRequest(url, timePeriod) {
     {
       console.log("Status Not 200 ");
 	  //alert("Error in the connection with the server.");
+	  
     }
     else
     {
        var text = xhr.responseText;
-       objectWithKeys = decode(text);
+       console.log("--- Call decode #2 ");       
+       //objectWithKeys = decode(text);
        console.log(objectWithKeys);
     }
   };
@@ -125,6 +129,12 @@ function getRequest(url, timePeriod) {
  
 function decode(text){
   // Parse the text returned from the request into a JSON object.
+	/***** JSON EXAMPLE
+	{lastUpdateTs: 1726157260610, key: "attribute2", value: true}
+	{lastUpdateTs: 1726157260610, key: "attribute3", value: 43}
+	{lastUpdateTs: 1726157260610, key: "attribute1", value: "value1"}
+	*/
+	
   console.log("In decode:: text:");
   console.log(text);
   obj = JSON.parse(text);
@@ -137,22 +147,127 @@ function decode(text){
     console.log("Key #"+i);
     temp=obj[i].key;
     console.log(temp)
-	if (i == 0 ){
-		document.getElementById("k1").innerHTML = obj[i].key;	
-		document.getElementById("v1").innerHTML = obj[i].value;	
-	}else if(i == 1){
-		document.getElementById("k2").innerHTML = obj[i].key;	
-		document.getElementById("v2").innerHTML = obj[i].value;	
-	}
 	// document.getElementById("fname").innerHTML = "New text!";
-	
-    //testAddRow(obj[i].data.key, obj[i].data.guest, obj[i].data.room, obj[i].data.start, obj[i].data.end)
-    
+	addRowToTable(obj[i].lastUpdateTs, obj[i].key, obj[i].value);
+	//addRowToTable(obj[1].lastUpdateTs, obj[1].key, obj[1].value);
+	//addRowToTable(obj[2].lastUpdateTs, obj[2].key, obj[2].value);   
   }
   // to change the table title:
   //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
   return obj;
 }
 
+
+function addRowToTable(inTS, inKey, inValue){
+  console.log("Add Row to table");	
+  
+  $('[data-toggle="tooltip"]').tooltip();
+	var actions = $("table td:last-child").html();
+  
+  var index = $("table tbody tr:last-child").index();
+  var row = '<tr>' +
+            '<td>'+inTS+'</td>' +
+            '<td>'+inKey+'</td>' +
+            '<td>'+inValue+'</td>' +
+//            '<td>'+ actions + '</td>' +    
+            '<td>'+
+            '<a class="add"    title="Add"    data-toggle="tooltip"><i class="glyphicon glyphicon-ok"></i></a>'+
+            '<a class="edit"   title="Edit"   data-toggle="tooltip"><i class="glyphicon glyphicon-pencil"></i></a>'+
+            '<a class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>'+
+            '</td>'+
+            '</tr>';
+  $("table").append(row);		
+  // Change the icon from .edit to .add
+  //$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+  $('[data-toggle="tooltip"]').tooltip();
+  
+  var empty = false;
+  var input = $(this).parents("tr").find('input[type="text"]');
+  
+  input.each(function(){
+    if(!$(this).val())
+    {
+      $(this).addClass("error");
+      empty = true;
+    }
+    else
+    {
+      $(this).removeClass("error");
+    }
+  });
+  
+  $(this).parents("tr").find(".error").first().focus();
+  
+  if(!empty)
+  {
+    input.each(function(){
+      $(this).parent("td").html($(this).val());
+    });			
+    $(this).parents("tr").find(".add, .edit").toggle();
+    $(".add-new").removeAttr("disabled");
+  }
+}
+
+
+function myJWT_Token(){
+	console.log("In myJWT_Token");
+
+	/* ORIGINAL CURL
+			curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"davidbonn18@gmail.com", "password":"nifdeb-xawXy3-natxok"}' 'http://thingsboard.cloud/api/auth/login'
+	*/
+	
+ 	var url = 'https://thingsboard.cloud/api/auth/login';
+    var username = "davidbonn18@gmail.com";
+    var password = "nifdeb-xawXy3-natxok";
+    var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
+	
+    // Create the XHR object.
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+      xhr.open('POST', url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+      xhr = new XDomainRequest();
+      xhr.open('POST', url);
+    } else {
+      xhr = null;
+    }
+	
+    if (!xhr) {
+      return;
+    }
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
+	//xhr.setRequestHeader('X-Authorization', '"username":"davidbonn18@gmail.com", "password":"nifdeb-xawXy3-natxok"');
+	//xhr.setRequestHeader('X-Authorization', '"username":"davidbonn18@gmail.com", "password":"nifdeb-xawXy3-natxok"');
+
+    // Response handlers.
+    xhr.onload = function() {
+      var text = xhr.responseText;
+	  console.log("on Load");
+  	  objectWithKeys = decode(text);
+    };
+
+    xhr.onerror = function() {
+  		console.log('There was an error making the request.');
+    };
+
+    xhr.onreadystatechange = function() {
+      if (this.status != 200)
+      {
+        console.log("Status Not 200 ");
+      }
+      else
+      {
+         var text = xhr.responseText;
+      }
+    };
+  	var Data = "{"+"'username':'"+username+"', "+"'password':'"+password+"'}";
+	console.log(Data);
+    // xhr.send(Data);
+    xhr.send('{"username":"davidbonn18@gmail.com", "password":"nifdeb-xawXy3-natxok"}');
+}
+
 // Globarl variable with the list of keys
 var objectWithKeys = null;
+
