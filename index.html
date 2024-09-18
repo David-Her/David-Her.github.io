@@ -8,23 +8,39 @@
     <!-- From the example of a table-->
     <!-- https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=table-with-add-and-delete-row-feature -->
     <link rel="stylesheet" href="js/TableStyle.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="css/bs/bootstrap.min.css" rel="stylesheet">
     <link href="css/remote/dashboard.css" rel="stylesheet">
     <!-- <script type="text/javascript">window.onload = function(){ document.getElementById("loading").style.display = "none" }</script> -->
 </head>
 
+<!------ BODY  ------>
 <body>
+	
     <div class="jumbotron text-center">
         <h1><b>THINGS_BOARD</b></h1>
     </div>
 	
 	<div class="jumbotron text-center">
-	  <label for="Uname">User (email): </label> <input type="text" id="Uname" name="Uname"><br><br>
-	  <label for="Pname">Pass: </label> <input type="text" id="Pname" name="Pname"><br><br>
 	  
-	  <p>Click the button get a new JWT Token:</p>
-	  <p><button onclick="myJWT_Token()">Request JWT_Token</button></p>
-		    
+	 
+
+<div class="w3-row w3-border">
+	  <div class="w3-container w3-half">
+    <h2>Usuario</h2>  
+  <label for="Uname">User (email): </label> <input type="text" id="Uname" name="Uname"><br><br>
+  <label for="Pname">Pass: </label> <input type="text" id="Pname" name="Pname"><br><br>
+  <p><button onclick="myJWT_Token()">Request JWT_Token</button></p>
+  </div>
+  <div class="w3-container w3-half">
+    <h2>Dispositivo</h2>
+    <label for="DevID">Dev-ID: </label> <input type="text" id="DevID" name="Uname"><br><br>
+    <label for="DevPass">Pass: </label> <input type="text" id="DevPass" name="Pname"><br><br>
+    <p><button onclick="get_DevInfo()">Request Dev_Info</button></p>
+  </div>
+</div>
+
+
     <div class="container">
                 <div class="table-responsive">
                 <div class="container">
