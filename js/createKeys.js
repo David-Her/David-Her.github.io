@@ -54,27 +54,37 @@ function testAddRow(inGuest, inRoom, inFrom, inTo, inKey){
 
 function sendKey(newKeyArr){
   console.log("In send request");
-  makePostRequest('POST', "https://api.altairsmartcore.com/streams/", newKeyArr);
-	
+  // makePostRequest('POST', "https://api.altairsmartcore.com/streams/", newKeyArr);
+  // makePostRequest('POST', "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes", newKeyArr);
+  // makePostRequestBT2('POST', "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes", newKeyArr);
+  makePostRequestBT2();
 }
 
 function makePostRequest(method, url, newKeyArr){
+  
+	/* ThingsBoard */
+	/*  -v -X POST 
+		https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes 
+		--header Content-Type:application/json 
+		--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}"
+    */
+  	
   var xhr = new XMLHttpRequest();
   var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
   var d = new Date();
   var data = 
   {
-    "protocol":"v2",
+    // "protocol":"v2",
     "at":timeNow,
-    "device":"KeysDevice@davidnike18.davidnike18",
+    // "device":"KeysDevice@davidnike18.davidnike18",
     "data":{
-      "key"   :newKeyArr[0],
-      "guest" :newKeyArr[1],
-      "room"  :newKeyArr[2],
-      "start" :newKeyArr[3], // Date.UTC(2030, 02, 18)
-      "end"   :newKeyArr[4], // Date.UTC(2030, 02, 18)
-      "valid" :"true",
-      "active":"false"
+      //"attribute1":timeNow,
+      // "guest" :newKeyArr[1],
+      // "room"  :newKeyArr[2],
+      // "start" :newKeyArr[3], // Date.UTC(2030, 02, 18)
+      // "end"   :newKeyArr[4], // Date.UTC(2030, 02, 18)
+      // "valid" :"true",
+      "attribute1":timeNow
     }
   };
   
@@ -105,7 +115,7 @@ function makePostRequest(method, url, newKeyArr){
   var apikey= '996367ee330a4ed903e2253780215dba3e72d24556bcc9917dcb6960da207441';
    // Add the needed headers to make the CORS request to Altair SmartWorks.
   //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
-  xhr.setRequestHeader('Apikey', apikey);
+  // xhr.setRequestHeader('Apikey', apikey);
   //xhr.setRequestHeader('Accept', 'application/json');
   //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');

@@ -271,6 +271,151 @@ function myJWT_Token(){
     // xhr.send('{"username":"xxxx@gmail.com", "password":"xxxx"}');
 }
 
+function makePostRequestBT2(){
+	console.log("makePostRequestBT2");
+
+	/* ORIGINAL CURL
+			curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"xxxx@gmail.com", "password":"xxxx"}' 'http://thingsboard.cloud/api/auth/login'
+	*/
+
+	/* ThingsBoard */
+	/*  -v -X POST 
+		https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes 
+		--header Content-Type:application/json 
+		--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}"
+	
+	curl -v -X POST 
+	--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}" 
+	https://demo.thingsboard.io/api/v1/$ACCESS_TOKEN/attributes 
+	--header "Content-Type:application/json"
+	
+	*/
+		
+ 	var url = 'https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes';
+	
+    // Create the XHR object.
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+      xhr.open('POST', url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+      xhr = new XDomainRequest();
+      xhr.open('POST', url);
+    } else {
+      xhr = null;
+    }
+	
+    if (!xhr) {
+      return;
+    }
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
+
+    // Response handlers.
+    xhr.onload = function() {
+      var text = xhr.responseText;
+	  console.log("on Load");
+	  const obj = JSON.parse(text);
+	  console.log("--- NEW KEY ---");
+	  JWT_Token = "Bearer "+obj.token;
+	  console.log(JWT_Token);
+	  console.log("--- NEW refreshToken ---");
+	  console.log(obj.refreshToken);
+    };
+
+    xhr.onerror = function() {
+  		console.log('There was an error making the request.');
+    };
+
+    xhr.onreadystatechange = function() {
+      if (this.status != 200)
+      {
+        console.log("Status Not 200 ");
+		alert('Unable to get the JWT_Token.');
+      }
+      else
+      {
+         var text = xhr.responseText;
+      }
+    };
+	//let Data = '{"username":"'+VarUsername+'","password":"'+VarPassword+'" }';
+	//console.log(Data);
+    //xhr.send(Data);
+    xhr.send('{"attribute1":"valueD"}');
+}
+
+
+
+
+function makePostRequestBT(method, url, newKeyArr){
+  
+	/* ThingsBoard */
+	/*  -v -X POST 
+		https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes 
+		--header Content-Type:application/json 
+		--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}"
+    */
+  	
+  var xhr = new XMLHttpRequest();
+  var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
+  var d = new Date();
+  var data = 
+  {
+    // "protocol":"v2",
+    "at":timeNow,
+    // "device":"KeysDevice@davidnike18.davidnike18",
+    "data":{
+      //"attribute1":timeNow,
+      // "guest" :newKeyArr[1],
+      // "room"  :newKeyArr[2],
+      // "start" :newKeyArr[3], // Date.UTC(2030, 02, 18)
+      // "end"   :newKeyArr[4], // Date.UTC(2030, 02, 18)
+      // "valid" :"true",
+      "attribute1":timeNow
+    }
+  };
+  
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+		
+  if (!xhr) {
+    //alert('CORS not supported');
+    console.log("CORS not supported");
+    return;
+  }
+  
+  xhr.onreadystatechange = function() {
+    if (this.status != 200)
+    {
+      alert("Error in the connection with the server.");
+    }
+  };
+   // Add the needed headers to make the CORS request to Altair SmartWorks.
+  //xhr.setRequestHeader('Host', 'api.altairsmartcore.com');
+  // xhr.setRequestHeader('Apikey', apikey);
+  //xhr.setRequestHeader('Accept', 'application/json');
+  //xhr.setRequestHeader('User-Agent', 'Smartcore-client');
+  
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  //"X-Authorization"
+  // xhr.setRequestHeader('X-Authorization', token);
+  xhr.setRequestHeader('X-Authorization', JWT_Token)
+ 
+  console.log(data);
+  xhr.send(JSON.stringify(data));
+  
+}
+
 // Globarl variable with the list of keys
 var objectWithKeys = null;
-var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
+// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
+var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjIxMWE4NmU4LTdhY2YtNGVkNC1iOTQwLWQ1MTk4ZmU3NDU3MyIsImV4cCI6MTcyNjg4NDk2NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY4NTYxNjYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.h3N_Y7vsn37Ty56BVV88PkmlLEti7WMiZUbdqREXoAI7I6gxScuv-HZHKntD568-FvaAnPtXw3t5M-dumk9Hpg";

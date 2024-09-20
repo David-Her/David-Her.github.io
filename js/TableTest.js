@@ -37,11 +37,13 @@ $(document).ready(function(){
     });
 	// Add row on add button click
 	$(document).on("click", ".add", function(){
+		console.log("On Click ADD");
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
 	    //var input = $(this).parents("tr").find("td:not(:first-child):not(:last-child)");
 		
         input.each(function(){
+			console.log($(this).val());
 			if(!$(this).val()){
 				$(this).addClass("error");
 				empty = true;
@@ -94,7 +96,7 @@ $(document).ready(function(){
 			console.log("Key to send: " + newKeyArr);
 			if(fromEdit)
 			{
-				deleteKey(newKeyArr[0]);
+				//deleteKey(newKeyArr[0]);
 			}
 			sendKey(newKeyArr);
 		}
