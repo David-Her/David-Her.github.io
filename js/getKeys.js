@@ -35,8 +35,9 @@ function getKeysFunction(){
   // curl -v -X GET "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes?"
   // getRequest("https://thingsboard.cloud", "day");
   
-  /// OK 
-  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day"); 
+  /// OK (SERVER_SCOPE, SHARED_SCOPE, CLIENT_SCOPE)
+  // getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day"); 
+  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/SERVER_SCOPE", "day"); 
   
   //curl -v -X GET "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE" \
   //  -H 'x-authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg' \
@@ -272,76 +273,97 @@ function myJWT_Token(){
 }
 
 function makePostRequestBT2(){
-	console.log("makePostRequestBT2");
-
-	/* ORIGINAL CURL
-			curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username":"xxxx@gmail.com", "password":"xxxx"}' 'http://thingsboard.cloud/api/auth/login'
+    console.log("makePostRequestBT2");
+	// var url = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE";
+	
+	/*
+	curl -v 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/ad17c410-914c-11eb-af0c-d5862211a5f6/SERVER_SCOPE' \
+	-H 'x-authorization: Bearer $YOUR_JWT_TOKEN_HERE' \
+	-H 'content-type: application/json' \
+	--data-raw '{"newAttributeName":"newAttributeValue"}'
 	*/
-
-	/* ThingsBoard */
-	/*  -v -X POST 
-		https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes 
-		--header Content-Type:application/json 
-		--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}"
 	
-	curl -v -X POST 
-	--data "{"attribute1": "value1", "attribute2":true, "attribute3": 43.0}" 
-	https://demo.thingsboard.io/api/v1/$ACCESS_TOKEN/attributes 
-	--header "Content-Type:application/json"
-	
-	*/
-		
- 	var url = 'https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes';
-	
+	// OK (SERVER_SCOPE, SHARED_SCOPE, CLIENT_SCOPE)
+	var url = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/attributes/SERVER_SCOPE";
+    
+	console.log(url);
     // Create the XHR object.
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
+  	 console.log("with credentials ");
+      // XHR for Chrome/Firefox/Opera/Safari.
       xhr.open('POST', url, true);
     } else if (typeof XDomainRequest != "undefined") {
+      // XDomainRequest for IE.
+  	console.log("No credentials ");
       xhr = new XDomainRequest();
       xhr.open('POST', url);
     } else {
+      // CORS not supported.
       xhr = null;
     }
-	
+    var token = "mvktomg51m6wwigo38fa";
+    var entityId = "e11c4010-711d-11ef-9db3-51985cbac8e9";
+
     if (!xhr) {
+      //alert('CORS not supported');
+      console.log("CORS not supported");
       return;
     }
 
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('X-Authorization', JWT_Token)
 
     // Response handlers.
     xhr.onload = function() {
       var text = xhr.responseText;
-	  console.log("on Load");
-	  const obj = JSON.parse(text);
-	  console.log("--- NEW KEY ---");
-	  JWT_Token = "Bearer "+obj.token;
-	  console.log(JWT_Token);
-	  console.log("--- NEW refreshToken ---");
-	  console.log(obj.refreshToken);
+      // Print the value returned by decode function in each input box.
+      console.log("--- Call decode #1 ");       
+  	  //objectWithKeys = decode(text);
+      console.log(text);    
     };
 
     xhr.onerror = function() {
-  		console.log('There was an error making the request.');
+  	console.log('There was an error making the request.');
+      //alert('Unable to connect to the server.');
     };
 
     xhr.onreadystatechange = function() {
       if (this.status != 200)
       {
         console.log("Status Not 200 ");
-		alert('Unable to get the JWT_Token.');
+  	  //alert("Error in the connection with the server.");
+	  
       }
       else
       {
          var text = xhr.responseText;
+         console.log("--- Call decode #2 ");       
+         //objectWithKeys = decode(text);
+         console.log(text);
       }
     };
-	//let Data = '{"username":"'+VarUsername+'","password":"'+VarPassword+'" }';
-	//console.log(Data);
-    //xhr.send(Data);
-    xhr.send('{"attribute1":"valueD"}');
+	
+    var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
+    var d = new Date();
+    var dataJ = 
+    {
+      // "protocol":"v2",
+	  "stringKey":"FromScript",
+      // "device":"KeysDevice@davidnike18.davidnike18",
+      "jsonKey":{
+        //"attribute1":timeNow,
+        // "guest" :newKeyArr[1],
+        // "room"  :newKeyArr[2],
+        // "start" :newKeyArr[3], // Date.UTC(2030, 02, 18)
+        // "end"   :newKeyArr[4], // Date.UTC(2030, 02, 18)
+        "valid" :"true",
+        "SomeNumber":timeNow
+      }
+    };
+	
+	
+    xhr.send(JSON.stringify(dataJ));
 }
 
 
@@ -418,4 +440,5 @@ function makePostRequestBT(method, url, newKeyArr){
 // Globarl variable with the list of keys
 var objectWithKeys = null;
 // var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
-var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjIxMWE4NmU4LTdhY2YtNGVkNC1iOTQwLWQ1MTk4ZmU3NDU3MyIsImV4cCI6MTcyNjg4NDk2NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY4NTYxNjYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.h3N_Y7vsn37Ty56BVV88PkmlLEti7WMiZUbdqREXoAI7I6gxScuv-HZHKntD568-FvaAnPtXw3t5M-dumk9Hpg";
+// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjIxMWE4NmU4LTdhY2YtNGVkNC1iOTQwLWQ1MTk4ZmU3NDU3MyIsImV4cCI6MTcyNjg4NDk2NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY4NTYxNjYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.h3N_Y7vsn37Ty56BVV88PkmlLEti7WMiZUbdqREXoAI7I6gxScuv-HZHKntD568-FvaAnPtXw3t5M-dumk9Hpg";
+var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImYzMWUxZTM4LWM0NGQtNDdiMy1hMTAxLTY0NTNkNWViMmQ3YiIsImV4cCI6MTcyNzE0MTMyOCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjcxMTI1MjgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0._GmNnVPdalBmZ6HTtWgKIi-SIvS4gTs2atbSNcJ_Y5GrqSCeutPK4ZB2wBcdht9caJHRkfpYwWLB1otGtwTW9A";
