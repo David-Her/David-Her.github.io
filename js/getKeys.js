@@ -269,7 +269,7 @@ function myJWT_Token(){
     // xhr.send('{"username":"xxxx@gmail.com", "password":"xxxx"}');
 }
 
-function makePostRequestBT2(){
+function makePostRequestBT2(newKeyArr){
     console.log("makePostRequestBT2");
 	// var url = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE";
 	
@@ -281,9 +281,24 @@ function makePostRequestBT2(){
 	*/
 	
 	// OK (SERVER_SCOPE, SHARED_SCOPE, CLIENT_SCOPE)
-	var url = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/attributes/SERVER_SCOPE";
-    
+	
+  	console.log("in get_DeviceInfo");
+  	const devID = document.getElementById("devID").value;
+  	console.log(devID);
+  	const devScope = document.getElementById("devScope").value;
+  	console.log(devScope);
+  
+  	prepareRequest(devID, devScope);
+	
+	var url = TB_URL+ DEV_ID + CON_PUB + SCOPE;
+
 	console.log(url);
+	console.log(newKeyArr);
+	console.log(newKeyArr[0]);
+	console.log(newKeyArr[1]);
+	console.log(newKeyArr[2]);
+	console.log(newKeyArr[3]);
+	
     // Create the XHR object.
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
@@ -344,7 +359,7 @@ function makePostRequestBT2(){
     var dataJ = 
     {
       // "protocol":"v2",
-	  "stringKey":"FromScript",
+	  "stringKey":"FromHTML_Script",
       // "device":"KeysDevice@davidnike18.davidnike18",
       "jsonKey":{
         //"attribute1":timeNow,
@@ -356,9 +371,14 @@ function makePostRequestBT2(){
         "SomeNumber":timeNow
       }
     };
+
+	var keyToSend = newKeyArr[1];
+	var valueToSend = newKeyArr[2];
+	var dataJ2 ={
+		keyFromHTML:valueToSend
+	};
 	
-	
-    xhr.send(JSON.stringify(dataJ));
+    xhr.send(JSON.stringify(dataJ2));
 }
 
 function makePostRequestBT(method, url, newKeyArr){
@@ -432,7 +452,7 @@ function makePostRequestBT(method, url, newKeyArr){
 function prepareRequest (devID, scope){
 	
 	console.log("in prepareRequest");
-	
+		
 	if(devID == ""){
 		return;
 	}else if(devID == "empty"){
@@ -461,7 +481,8 @@ function prepareRequest (devID, scope){
 	}else if(scope == "opt_Shared_Att"){
 		SCOPE = "SHARED_SCOPE";
 	}else if(scope == "opt_Telemetry"){
-		SCOPE = "";
+		SCOPE = "ANY";
+		CONTEXT = "/timeseries/";
 	}else {
 		
 	}
@@ -481,12 +502,14 @@ function get_DeviceInfo(){
 
 // Globarl variable with the list of keys
 var TB_URL  = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/"; 
+var TB2URL  = "https://thingsboard.cloud/api/plugins/telemetry/";
+var TB4URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes";
 var CONTEXT = "/values/attributes/";
+var CON_PUB = "/attributes/";
 var SCOPE   = "empty";
 var DEV_ID  = "empty";
-  
+
+
 var objectWithKeys = null;
-// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
-// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjIxMWE4NmU4LTdhY2YtNGVkNC1iOTQwLWQ1MTk4ZmU3NDU3MyIsImV4cCI6MTcyNjg4NDk2NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY4NTYxNjYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.h3N_Y7vsn37Ty56BVV88PkmlLEti7WMiZUbdqREXoAI7I6gxScuv-HZHKntD568-FvaAnPtXw3t5M-dumk9Hpg";
-// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImYzMWUxZTM4LWM0NGQtNDdiMy1hMTAxLTY0NTNkNWViMmQ3YiIsImV4cCI6MTcyNzE0MTMyOCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjcxMTI1MjgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0._GmNnVPdalBmZ6HTtWgKIi-SIvS4gTs2atbSNcJ_Y5GrqSCeutPK4ZB2wBcdht9caJHRkfpYwWLB1otGtwTW9A";
-var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImJkNzE0ZTEyLTZiM2UtNGY1OC05Yzc5LWM0MDQ1Y2RkMzZmZiIsImV4cCI6MTcyNzk4NTY5NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjc5NTY4OTYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.B-4TSEmW97K_tMPvw44qg8fWSQZmeY6bdqqIRXGvxL4m-tfl3PzzRWDdI1gNHlA_FRkdfMv80zgB1iKe61jxTQ";
+//svar JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImJkNzE0ZTEyLTZiM2UtNGY1OC05Yzc5LWM0MDQ1Y2RkMzZmZiIsImV4cCI6MTcyNzk4NTY5NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjc5NTY4OTYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.B-4TSEmW97K_tMPvw44qg8fWSQZmeY6bdqqIRXGvxL4m-tfl3PzzRWDdI1gNHlA_FRkdfMv80zgB1iKe61jxTQ";
+var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImQ3MjMwZDFlLWUyNWEtNGVjZC04M2NiLWE0YmI1NThkYjg1MSIsImV4cCI6MTcyODAxNDcxMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjc5ODU5MTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.ZII5L-zkJBcDNS1NHTEHUhE054xUqg0tGIgmUk4UjVotQGy_hycPtUmxUdnJsIwzWZ1dRrNqSmx05VJ8N7poqg";

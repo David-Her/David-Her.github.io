@@ -55,9 +55,9 @@ function testAddRow(inGuest, inRoom, inFrom, inTo, inKey){
 function sendKey(newKeyArr){
   console.log("In send request");
   // makePostRequest('POST', "https://api.altairsmartcore.com/streams/", newKeyArr);
-  // makePostRequest('POST', "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes", newKeyArr);
+  // makePostRequest('POST',    "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes", newKeyArr);
   // makePostRequestBT2('POST', "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes", newKeyArr);
-  makePostRequestBT2();
+  makePostRequestBT2(newKeyArr);
 }
 
 function makePostRequest(method, url, newKeyArr){
