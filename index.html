@@ -26,21 +26,44 @@
 	 
 
 <div class="w3-row w3-border">
-	  <div class="w3-container w3-half">
-    <h2>Usuario</h2>  
-  <label for="Uname">User (email): </label> <input type="text" id="Uname" name="Uname"><br><br>
-  <label for="Pname">Pass: </label> <input type="text" id="Pname" name="Pname"><br><br>
-  <p><button onclick="myJWT_Token()">Request JWT_Token</button></p>
-  </div>
-  <div class="w3-container w3-half">
-    <h2>Dispositivo</h2>
-    <label for="DevID">Dis-ID: </label> <input type="text" id="DevID" name="Uname"><br><br>
-    <label for="DevPass">Pass: </label> <input type="text" id="DevPass" name="Pname"><br><br>
-    <p><button onclick="get_DeviceInfo()">Request Dev_Info</button></p>
-  </div>
+    <div class="w3-container w3-half">
+        <h2>Usuario</h2>  
+  	  	<label for="Uname">User (email): </label> <input type="text" id="Uname" name="Uname"><br><br>
+  	  	<label for="Pname">Pass: </label> <input type="text" id="Pname" name="Pname"><br><br>
+  	  	<p><button onclick="myJWT_Token()">Request JWT_Token</button></p>
+  	</div>
+  	<div class="w3-container w3-half">
+    	<h2>Dispositivo</h2>
+		<!-- <form action="/action_page.php"> -->
+    	<form action="get_DeviceInfo()">
+	  		<label for="cars">Choose one:</label>
+	  	  	<select name="devID" id="devID">
+	    		<optgroup label="Devices">
+	      			<option value="Dev_Test1">Dev_Test1</option>
+	      	  		<option value="ESP32_Faca">ESP32_Faca</option>
+	    		</optgroup>
+	    		<optgroup label="Gateways">
+	      	  		<option value="Gate1_Dav">Gate1_Dav</option>
+	      	  		<option value="Gate1_Faca">Gate1_Face</option>
+	    		</optgroup>
+	    	</select>
+	  	  	<br><br>
+		</form>
+    	<form action="get_DeviceInfo()">
+	  		<label for="cars">Scope:</label>
+	  	  	<select name="devScope" id="devScope">
+      	  		<option value="opt_Client_Att">Client Attributes</option>
+      	  		<option value="opt_Server_Att">Server Attributes</option>
+      	  		<option value="opt_Shared_Att">Shared Attributes</option>
+      			<option value="opt_Telemetry">Telemetry</option>
+	    	</select>
+	  	  	<br><br>
+		</form>
+ 		<p><button onclick="get_DeviceInfo()">Request Dev_Info</button></p>
+    </div>
 </div>
 
-
+<!-- TABLE !-->
     <div class="container">
                 <div class="table-responsive">
                 <div class="container">

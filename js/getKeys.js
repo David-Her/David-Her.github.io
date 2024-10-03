@@ -37,7 +37,7 @@ function getKeysFunction(){
   
   /// OK (SERVER_SCOPE, SHARED_SCOPE, CLIENT_SCOPE)
   // getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE", "day"); 
-  getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/SERVER_SCOPE", "day"); 
+  // getRequest("https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/SERVER_SCOPE", "day");
   
   //curl -v -X GET "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE" \
   //  -H 'x-authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRhNGEzZmIzLTE4ZjctNDhhMy05M2RhLTFhNTFkYzBmMDRjMiIsImV4cCI6MTcyNjQ0NDE5OCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY0MTUzOTgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.NKGPyPaxI1uuzpVn04ZZGnkVVKx0V2I5y4zLOk80F2Gb47nLuhecK-UrAuY0c34P2pDuqKbipD70H1mfKZ-JVg' \
@@ -49,8 +49,8 @@ function getKeysFunction(){
 }
 
 // Make the actual CORS request.
-function getRequest(url, timePeriod) {
-  console.log("In getRequest: URL: ");
+function makeRequest(url) {
+  console.log("In makeRequest: URL: ");
   console.log(url);
   // Create the XHR object.
   var xhr = new XMLHttpRequest();
@@ -69,8 +69,6 @@ function getRequest(url, timePeriod) {
   }
   // Specify the Meteo apikey (when connecting CORS to your Altair SmartWorks account you must substitute your apikey here).
   // ThingBoard Credentials
-  var token = "mvktomg51m6wwigo38fa";
-  var entityId = "e11c4010-711d-11ef-9db3-51985cbac8e9";
   // var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA"; 
 
   if (!xhr) {
@@ -127,7 +125,6 @@ function getRequest(url, timePeriod) {
   xhr.send();
 }
 
- 
 function decode(text){
   // Parse the text returned from the request into a JSON object.
 	/***** JSON EXAMPLE
@@ -149,7 +146,9 @@ function decode(text){
     temp=obj[i].key;
     console.log(temp)
 	// document.getElementById("fname").innerHTML = "New text!";
-	addRowToTable(obj[i].lastUpdateTs, obj[i].key, obj[i].value);
+	var d = new Date(obj[1].lastUpdateTs);
+	var dateTS = (d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() +' - ' + d.getHours() + ':' + d.getMinutes());
+	addRowToTable(dateTS, obj[i].key, obj[i].value);
 	//addRowToTable(obj[1].lastUpdateTs, obj[1].key, obj[1].value);
 	//addRowToTable(obj[2].lastUpdateTs, obj[2].key, obj[2].value);   
   }
@@ -157,7 +156,6 @@ function decode(text){
   //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
   return obj;
 }
-
 
 function addRowToTable(inTS, inKey, inValue){
   console.log("Add Row to table");	
@@ -208,7 +206,6 @@ function addRowToTable(inTS, inKey, inValue){
     $(".add-new").removeAttr("disabled");
   }
 }
-
 
 function myJWT_Token(){
 	console.log("In myJWT_Token");
@@ -302,8 +299,6 @@ function makePostRequestBT2(){
       // CORS not supported.
       xhr = null;
     }
-    var token = "mvktomg51m6wwigo38fa";
-    var entityId = "e11c4010-711d-11ef-9db3-51985cbac8e9";
 
     if (!xhr) {
       //alert('CORS not supported');
@@ -365,9 +360,6 @@ function makePostRequestBT2(){
 	
     xhr.send(JSON.stringify(dataJ));
 }
-
-
-
 
 function makePostRequestBT(method, url, newKeyArr){
   
@@ -437,8 +429,64 @@ function makePostRequestBT(method, url, newKeyArr){
   
 }
 
+function prepareRequest (devID, scope){
+	
+	console.log("in prepareRequest");
+	
+	if(devID == ""){
+		return;
+	}else if(devID == "empty"){
+		return;
+	}else if(devID == "Dev_Test1"){
+		console.log("in prepareRequest");
+		DEV_ID = "e11c4010-711d-11ef-9db3-51985cbac8e9";
+	}else if(devID == "ESP32_Faca"){
+		DEV_ID = "";
+	}else if(devID == "Gate1_Dav"){
+		DEV_ID = "8beeb200-7e59-11ef-92ef-05ff0bb08a5f";
+	}else if(devID == "Gate1_Faca"){
+		DEV_ID = "";
+	}else {
+		
+	}	
+    // OK (SERVER_SCOPE, SHARED_SCOPE, CLIENT_SCOPE)
+	if(scope == ""){
+		return;
+	}else if(scope == "empty"){
+		return;
+	}else if(scope == "opt_Client_Att"){
+		SCOPE = "CLIENT_SCOPE";
+	}else if(scope == "opt_Server_Att"){
+		SCOPE = "SERVER_SCOPE";
+	}else if(scope == "opt_Shared_Att"){
+		SCOPE = "SHARED_SCOPE";
+	}else if(scope == "opt_Telemetry"){
+		SCOPE = "";
+	}else {
+		
+	}
+} 
+
+function get_DeviceInfo(){
+	  console.log("in get_DeviceInfo");
+	  const devID = document.getElementById("devID").value;
+	  console.log(devID);
+	  const devScope = document.getElementById("devScope").value;
+	  console.log(devScope);
+	  
+	  prepareRequest(devID, devScope);
+	  makeRequest(TB_URL+DEV_ID+CONTEXT+SCOPE); 
+}
+
+
 // Globarl variable with the list of keys
+var TB_URL  = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/"; 
+var CONTEXT = "/values/attributes/";
+var SCOPE   = "empty";
+var DEV_ID  = "empty";
+  
 var objectWithKeys = null;
 // var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImU0NDE4NTUxLTAzZTUtNDUxOS04ZTQ5LTkzZGUwYTgxMzZlZiIsImV4cCI6MTcyNjUzOTc5MiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY1MTA5OTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.XE94zH60BYvG_1uT5Ad_FpmUqbjrMvUbkNbLOZuQz88CjIMQ50XonNYE31P7Y4WqrkcQ037JbSyBE-QIMY51BA";
 // var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjIxMWE4NmU4LTdhY2YtNGVkNC1iOTQwLWQ1MTk4ZmU3NDU3MyIsImV4cCI6MTcyNjg4NDk2NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjY4NTYxNjYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.h3N_Y7vsn37Ty56BVV88PkmlLEti7WMiZUbdqREXoAI7I6gxScuv-HZHKntD568-FvaAnPtXw3t5M-dumk9Hpg";
-var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImYzMWUxZTM4LWM0NGQtNDdiMy1hMTAxLTY0NTNkNWViMmQ3YiIsImV4cCI6MTcyNzE0MTMyOCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjcxMTI1MjgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0._GmNnVPdalBmZ6HTtWgKIi-SIvS4gTs2atbSNcJ_Y5GrqSCeutPK4ZB2wBcdht9caJHRkfpYwWLB1otGtwTW9A";
+// var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImYzMWUxZTM4LWM0NGQtNDdiMy1hMTAxLTY0NTNkNWViMmQ3YiIsImV4cCI6MTcyNzE0MTMyOCwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjcxMTI1MjgsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0._GmNnVPdalBmZ6HTtWgKIi-SIvS4gTs2atbSNcJ_Y5GrqSCeutPK4ZB2wBcdht9caJHRkfpYwWLB1otGtwTW9A";
+var JWT_Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImJkNzE0ZTEyLTZiM2UtNGY1OC05Yzc5LWM0MDQ1Y2RkMzZmZiIsImV4cCI6MTcyNzk4NTY5NiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjc5NTY4OTYsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.B-4TSEmW97K_tMPvw44qg8fWSQZmeY6bdqqIRXGvxL4m-tfl3PzzRWDdI1gNHlA_FRkdfMv80zgB1iKe61jxTQ";
