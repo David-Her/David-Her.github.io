@@ -530,11 +530,16 @@ function get_DeviceInfo(){
 // Globarl variable with the list of keys
 var TB_URL  = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/"; 
 var TB2URL  = "https://thingsboard.cloud/api/plugins/telemetry/";
-var TB4URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes";
+var TB4URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/telemetry";
+var TB5URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes";
 var CONTEXT = "/values/attributes/";
 var CON_PUB = "/attributes/";
 var SCOPE   = "empty";
 var DEV_ID  = "empty";
+
+// FROM ThingsBoard.h
+//char constexpr HTTP_TELEMETRY_TOPIC[] PROGMEM = "/api/v1/%s/telemetry";
+// char constexpr HTTP_ATTRIBUTES_TOPIC[] PROGMEM = "/api/v1/%s/attributes";
 
 
 var objectWithKeys = null;
