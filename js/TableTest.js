@@ -8,32 +8,33 @@ $(document).ready(function(){
 	getKeysFunction();
 	// Append table with add row form on add new button click
     $(".add-new").click(function(){
-		$(this).attr("disabled", "disabled");
+		//$(this).attr("disabled", "disabled");
 		var index = $("table tbody tr:last-child").index();
-	    var randomNummer = Math.floor(Math.random()*(999-100+1)+100);
-		var randomLetters = makeid(3);
-		randomKey = randomLetters+randomNummer.toString();
-		console.log(randomKey);
-		newKeyArr[0] = randomKey;
-		indexFalse = [1,2,3,4];
-		fromEdit = false;
-//		Key	Guest	Room	From	To
+	    // var randomNummer = Math.floor(Math.random()*(999-100+1)+100);
+		// var randomLetters = makeid(3);
+		//randomKey = randomLetters+randomNummer.toString();
+	    var timeNow = Math.floor(Date.now()/1000); // Decrease precision.
+	    var d = new Date();
         var row = '<tr>' +
-            '<td>'+randomKey+'</td>' +
-            '<td><input type="text" class="form-control" name="guest" id="guest"></td>' +
-            '<td><input type="text" class="form-control" name="room"  id="room"></td>' +
-			'<td><input type="text" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" class="form-control" name="from"  id="phone"></td>' +
-			'<td><input type="text" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" class="form-control" name="to"    id="to"></td>' +
-			//'<td>' + actions + '</td>' +
+            '<td>'+timeNow+'</td>' +
+            '<td><input type="text" class="form-control" name="key" id="key"></td>' +
+            '<td><input type="text" class="form-control" name="value"  id="value"></td>' +
 			'<td>'+
             '<a class="add"    title="Add"    data-toggle="tooltip"><i class="glyphicon glyphicon-ok"></i></a>'+
             '<a class="edit"   title="Edit"   data-toggle="tooltip"><i class="glyphicon glyphicon-pencil"></i></a>'+
             '<a class="delete" title="Delete" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"></i></a>'+
             '</td>'+
         '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
+    	var addRowToTheTable = false;
+		if(addRowToTheTable){
+			$("table").append(row);		
+			$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+	        $('[data-toggle="tooltip"]').tooltip();	
+		};
+
+	  	const inKey = document.getElementById("inKey").value;
+		const inValue = document.getElementById("inValue").value;
+		sendKey(inKey, inValue);
     });
 	// Add row on add button click
 	$(document).on("click", ".add", function(){
@@ -98,7 +99,7 @@ $(document).ready(function(){
 			{
 				//deleteKey(newKeyArr[0]);
 			}
-			sendKey(newKeyArr);
+			sendKey(newKeyArr[1], newKeyArr[2]);
 		}
     });
 	// Edit row on edit button click

@@ -29,6 +29,30 @@ function getKeysFunction(){
   // Instantiate the variable limit and set its value to one day before the now variable.
   var limit = currentDate.setDate(currentDate.getDate() - since);
   limit = parseInt(currentDate.getTime()/1000);
+  
+  console.log("Read cookie JWT Token")
+  $.cookie.json = true;
+  var dikey = $.cookie("JWT_Token");
+  if( dikey !== undefined ) 
+  {
+    if ((typeof dikey == 'string') && (dikey.length > 5))
+    {
+      console.log("JWT_Token valid")
+      console.log(dikey)
+      JWT_Token = dikey;
+    }
+    else
+    {
+      console.log("JWT_Token not valid")
+    }    
+  }
+  else
+  {
+    console.log("no JWT_Token	")
+  }
+  
+  
+  
   // Make the CORS request to Altair SmartWorks to get all the streams between now and the limit (one natural day before).
   //getRequest("https://api.altairsmartcore.com/devices/KeysDevice@davidnike18.davidnike18/streams/?at_to="+now+"&at_from="+limit, "day");
   // From Thingsboard CURL
@@ -246,6 +270,10 @@ function myJWT_Token(){
 	  console.log(JWT_Token);
 	  console.log("--- NEW refreshToken ---");
 	  console.log(obj.refreshToken);
+	  
+	  console.log("Save JWT Token in the cookies´");
+	  $.cookie("JWT_Token", JWT_Token, {expires : 2}); // Save cookie (2 days of validity)
+	  
     };
 
     xhr.onerror = function() {
@@ -269,7 +297,7 @@ function myJWT_Token(){
     // xhr.send('{"username":"xxxx@gmail.com", "password":"xxxx"}');
 }
 
-function makePostRequestBT2(newKeyArr){
+function makePostRequestBT2(keyToSend, valueToSend){
     console.log("makePostRequestBT2");
 	// var url = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/attributes/CLIENT_SCOPE";
 	
@@ -293,11 +321,8 @@ function makePostRequestBT2(newKeyArr){
 	var url = TB_URL+ DEV_ID + CON_PUB + SCOPE;
 
 	console.log(url);
-	console.log(newKeyArr);
-	console.log(newKeyArr[0]);
-	console.log(newKeyArr[1]);
-	console.log(newKeyArr[2]);
-	console.log(newKeyArr[3]);
+	console.log("keyToSend: " + keyToSend);
+	console.log("valueToSend: " + valueToSend);
 	
     // Create the XHR object.
     var xhr = new XMLHttpRequest();
@@ -372,13 +397,14 @@ function makePostRequestBT2(newKeyArr){
       }
     };
 
-	var keyToSend = newKeyArr[1];
-	var valueToSend = newKeyArr[2];
 	var dataJ2 ={
-		keyFromHTML:valueToSend
+		keyFromHTTML:valueToSend
 	};
 	
-    xhr.send(JSON.stringify(dataJ2));
+	var dataJ3 = "{" + keyToSend.toString() + ":" + valueToSend.toString() + "}";
+	console.log(dataJ3);
+    // xhr.send(JSON.stringify(dataJ2));
+	xhr.send(JSON.stringify(dataJ3));
 }
 
 function makePostRequestBT(method, url, newKeyArr){
