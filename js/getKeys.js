@@ -401,10 +401,11 @@ function makePostRequestBT2(keyToSend, valueToSend){
 		keyFromHTTML:valueToSend
 	};
 	
-	var dataJ3 = "{" + keyToSend.toString() + ":" + valueToSend.toString() + "}";
+	let dataJ3 = '{"' + keyToSend.toString() + '":"' + valueToSend.toString() + '"}"';
 	console.log(dataJ3);
     // xhr.send(JSON.stringify(dataJ2));
-	xhr.send(JSON.stringify(dataJ3));
+	// xhr.send(JSON.stringify(dataJ3));
+	xhr.send(dataJ3);
 }
 
 function makePostRequestBT(method, url, newKeyArr){
