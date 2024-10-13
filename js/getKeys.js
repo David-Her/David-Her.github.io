@@ -537,6 +537,20 @@ var CON_PUB = "/attributes/";
 var SCOPE   = "empty";
 var DEV_ID  = "empty";
 
+// Timeseries
+/* curl -X 'GET' \
+  'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/keys/attributes' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImZhNTE3OTZmLWEyZmEtNDNjYy04YTdjLWQ4NjczZmZlN2M1MSIsImV4cCI6MTcyODg1MTQwNSwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjg4MjI2MDUsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aXVRtWxYMrFEA07SAgWWp0XpYsUZST45yGfPdGXT6VvnPKuhaS5Ibw_E8eDkdnvGpTozV87D8awmRLj9IWOUEA'
+*/
+
+/* curl -X 'GET' \
+  'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Att&startTs=1726432954&endTs=1728851847&interval=0&limit=100&useStrictDataTypes=false' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImJjZjM1ZjI5LWU4NDUtNDU1MS04NjA2LTllM2RiMzVlNzU1NiIsImV4cCI6MTcyODg4MDc5NSwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjg4NTE5OTUsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.QRCANayaRWH3-vfq7xCQTe5r3YUkBBklI1rLIkTRs7tvieI1Injw3KHZXWvM9qTtKBVHubFD2rAETdhsF8UokQ'
+*/
+
+
 // FROM ThingsBoard.h
 //char constexpr HTTP_TELEMETRY_TOPIC[] PROGMEM = "/api/v1/%s/telemetry";
 // char constexpr HTTP_ATTRIBUTES_TOPIC[] PROGMEM = "/api/v1/%s/attributes";
