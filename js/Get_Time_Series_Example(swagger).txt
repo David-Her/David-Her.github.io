@@ -1,0 +1,429 @@
+Device ID
+e11c4010-711d-11ef-9db3-51985cbac8e9
+
+DEVICE* 	= DEVICE
+entityId* 	= e11c4010-711d-11ef-9db3-51985cbac8e9
+keys * 		= Key1ESP
+startTs *	= 1728856800000
+endTs *     = 1728994871422
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImRmNzNiNTE4LTYxYmUtNDRmZi05Y2RkLWZmZGIwMDdhZDMxNCIsImV4cCI6MTcyOTAxODgxMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3Mjg5OTAwMTIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.l4sYVnpwF2AoUW6r4a8RfezHfdna0wmhLKVvfq9TJeERRuME3CU-51HUgiLkLdDGVsKgvmeM1cS_8VJnVvMIMQ'
+  
+ 'https://thingsboard.cloud
+ /api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?
+ keys=Key1ESP &
+ startTs=1728856800000 &
+ endTs=1728994871422 & 
+ interval=0 & 
+ limit=100 &
+ useStrictDataTypes=false' \
+  
+	Response:
+
+{
+  "Key1ESP": [
+    {
+      "ts": 1728994868736,
+      "value": "25"
+    },
+    {
+      "ts": 1728994865733,
+      "value": "28"
+    },
+    {
+      "ts": 1728994862720,
+      "value": "21"
+    },
+    {
+      "ts": 1728994859716,
+      "value": "27"
+    },
+    {
+      "ts": 1728994856710,
+      "value": "24"
+    },
+    {
+      "ts": 1728994853701,
+      "value": "10"
+    },
+    {
+      "ts": 1728994850696,
+      "value": "12"
+    },
+    {
+      "ts": 1728994847690,
+      "value": "17"
+    },
+    {
+      "ts": 1728994844681,
+      "value": "17"
+    },
+    {
+      "ts": 1728994841673,
+      "value": "12"
+    },
+    {
+      "ts": 1728994838669,
+      "value": "16"
+    },
+    {
+      "ts": 1728994835658,
+      "value": "18"
+    },
+    {
+      "ts": 1728994832658,
+      "value": "18"
+    },
+    {
+      "ts": 1728994829645,
+      "value": "19"
+    },
+    {
+      "ts": 1728994826643,
+      "value": "25"
+    },
+    {
+      "ts": 1728994823635,
+      "value": "20"
+    },
+    {
+      "ts": 1728994820627,
+      "value": "19"
+    },
+    {
+      "ts": 1728994817624,
+      "value": "17"
+    },
+    {
+      "ts": 1728994814615,
+      "value": "14"
+    },
+    {
+      "ts": 1728994811611,
+      "value": "28"
+    },
+    {
+      "ts": 1728994808602,
+      "value": "29"
+    },
+    {
+      "ts": 1728994805602,
+      "value": "24"
+    },
+    {
+      "ts": 1728994802592,
+      "value": "18"
+    },
+    {
+      "ts": 1728994799583,
+      "value": "23"
+    },
+    {
+      "ts": 1728994796575,
+      "value": "21"
+    },
+    {
+      "ts": 1728994793572,
+      "value": "12"
+    },
+    {
+      "ts": 1728994790563,
+      "value": "22"
+    },
+    {
+      "ts": 1728994787562,
+      "value": "26"
+    },
+    {
+      "ts": 1728994784552,
+      "value": "25"
+    },
+    {
+      "ts": 1728994781542,
+      "value": "20"
+    },
+    {
+      "ts": 1728994778540,
+      "value": "28"
+    },
+    {
+      "ts": 1728994775530,
+      "value": "25"
+    },
+    {
+      "ts": 1728994772528,
+      "value": "28"
+    },
+    {
+      "ts": 1728994769520,
+      "value": "27"
+    },
+    {
+      "ts": 1728994766515,
+      "value": "22"
+    },
+    {
+      "ts": 1728994763507,
+      "value": "13"
+    },
+    {
+      "ts": 1728994760502,
+      "value": "20"
+    },
+    {
+      "ts": 1728994757497,
+      "value": "24"
+    },
+    {
+      "ts": 1728994754488,
+      "value": "17"
+    },
+    {
+      "ts": 1728994751480,
+      "value": "20"
+    },
+    {
+      "ts": 1728994748478,
+      "value": "17"
+    },
+    {
+      "ts": 1728994745476,
+      "value": "28"
+    },
+    {
+      "ts": 1728994742463,
+      "value": "20"
+    },
+    {
+      "ts": 1728994739457,
+      "value": "14"
+    },
+    {
+      "ts": 1728994736449,
+      "value": "10"
+    },
+    {
+      "ts": 1728994733445,
+      "value": "29"
+    },
+    {
+      "ts": 1728994730438,
+      "value": "14"
+    },
+    {
+      "ts": 1728994727431,
+      "value": "10"
+    },
+    {
+      "ts": 1728994724424,
+      "value": "18"
+    },
+    {
+      "ts": 1728994721415,
+      "value": "26"
+    },
+    {
+      "ts": 1728994718411,
+      "value": "28"
+    },
+    {
+      "ts": 1728994715403,
+      "value": "27"
+    },
+    {
+      "ts": 1728994712397,
+      "value": "27"
+    },
+    {
+      "ts": 1728994709388,
+      "value": "16"
+    },
+    {
+      "ts": 1728994706387,
+      "value": "16"
+    },
+    {
+      "ts": 1728994703383,
+      "value": "17"
+    },
+    {
+      "ts": 1728994700370,
+      "value": "11"
+    },
+    {
+      "ts": 1728994697368,
+      "value": "22"
+    },
+    {
+      "ts": 1728994694357,
+      "value": "12"
+    },
+    {
+      "ts": 1728994691354,
+      "value": "19"
+    },
+    {
+      "ts": 1728994688350,
+      "value": "24"
+    },
+    {
+      "ts": 1728994685338,
+      "value": "17"
+    },
+    {
+      "ts": 1728994682341,
+      "value": "14"
+    },
+    {
+      "ts": 1728994679329,
+      "value": "14"
+    },
+    {
+      "ts": 1728994676320,
+      "value": "26"
+    },
+    {
+      "ts": 1728994673314,
+      "value": "15"
+    },
+    {
+      "ts": 1728994670315,
+      "value": "16"
+    },
+    {
+      "ts": 1728994667302,
+      "value": "18"
+    },
+    {
+      "ts": 1728994664300,
+      "value": "11"
+    },
+    {
+      "ts": 1728994661291,
+      "value": "12"
+    },
+    {
+      "ts": 1728994658284,
+      "value": "10"
+    },
+    {
+      "ts": 1728994655278,
+      "value": "11"
+    },
+    {
+      "ts": 1728994652272,
+      "value": "20"
+    },
+    {
+      "ts": 1728994649263,
+      "value": "26"
+    },
+    {
+      "ts": 1728994646259,
+      "value": "13"
+    },
+    {
+      "ts": 1728994643254,
+      "value": "27"
+    },
+    {
+      "ts": 1728994640250,
+      "value": "18"
+    },
+    {
+      "ts": 1728994637236,
+      "value": "19"
+    },
+    {
+      "ts": 1728994634228,
+      "value": "12"
+    },
+    {
+      "ts": 1728994631223,
+      "value": "26"
+    },
+    {
+      "ts": 1728994628217,
+      "value": "14"
+    },
+    {
+      "ts": 1728994625218,
+      "value": "22"
+    },
+    {
+      "ts": 1728994622204,
+      "value": "13"
+    },
+    {
+      "ts": 1728994619199,
+      "value": "22"
+    },
+    {
+      "ts": 1728994616198,
+      "value": "14"
+    },
+    {
+      "ts": 1728994613184,
+      "value": "23"
+    },
+    {
+      "ts": 1728994610179,
+      "value": "19"
+    },
+    {
+      "ts": 1728994607176,
+      "value": "20"
+    },
+    {
+      "ts": 1728994604170,
+      "value": "16"
+    },
+    {
+      "ts": 1728994601162,
+      "value": "16"
+    },
+    {
+      "ts": 1728994598211,
+      "value": "18"
+    },
+    {
+      "ts": 1728994595152,
+      "value": "23"
+    },
+    {
+      "ts": 1728994592145,
+      "value": "26"
+    },
+    {
+      "ts": 1728994589136,
+      "value": "21"
+    },
+    {
+      "ts": 1728994586136,
+      "value": "21"
+    },
+    {
+      "ts": 1728994583128,
+      "value": "22"
+    },
+    {
+      "ts": 1728994580121,
+      "value": "13"
+    },
+    {
+      "ts": 1728994577112,
+      "value": "26"
+    },
+    {
+      "ts": 1728994574104,
+      "value": "13"
+    },
+    {
+      "ts": 1728994571095,
+      "value": "20"
+    }
+  ]
+}
