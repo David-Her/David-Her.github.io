@@ -73,7 +73,7 @@ function getKeysFunction(){
 }
 
 // Make the actual CORS request.
-function makeRequest(url) {
+function makeRequest(url, typeOfData) {
   console.log("In makeRequest: URL: ");
   console.log(url);
   // Create the XHR object.
@@ -121,7 +121,14 @@ function makeRequest(url) {
     var text = xhr.responseText;
     // Print the value returned by decode function in each input box.
     console.log("--- Call decode #1 ");       
-	objectWithKeys = decode(text);
+	if(typeOfData == "Timeseries")
+    {
+            objectWithKeys = decodeTimeseries(text);
+    }
+    else
+    {
+            objectWithKeys = decode(text);
+    }
     console.log(objectWithKeys);    
   };
 
@@ -179,6 +186,64 @@ function decode(text){
   // to change the table title:
   //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
   return obj;
+}
+
+function decodeTimeseries(text){
+	/***** JSON EXAMPLE
+  "Key1ESP": [
+    {
+      "ts": 1728994868736,
+      "value": "25"
+    },
+    {
+      "ts": 1728994865733,
+      "value": "28"
+    },
+		*/
+	
+  console.log("In decodeTimeseries:: text:");
+  //console.log(text);
+  obj = JSON.parse(text);
+  //console.log("In decode:: obj:");
+  console.log(obj);
+  var arraySize = obj.Key1ESP.length;
+  console.log(arraySize);
+  var temp=0;
+  var avg=0;
+  const xValues = new Array(arraySize);
+  const yData   = new Array(arraySize);
+  // Add Elemet into an Array
+  // fruits.push("Lemon");  // Adds a new element (Lemon) to fruits
+  for(var i=0; i<obj.Key1ESP.length; i++){
+    // console.log("Key #"+i);
+    xValues[i] =  obj.Key1ESP[i].ts;;
+    yData[i]   =  obj.Key1ESP[i].value;;
+    // console.log(xValues[i] + " - " + yData[i]);
+	//var d = new Date(obj[1].lastUpdateTs);
+	//var dateTS = (d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() +' - ' + d.getHours() + ':' + d.getMinutes());
+	//addRowToTable(dateTS, obj[i].key, obj[i].value);
+  }
+    console.log("xData size: " + xValues.length);
+  // to change the table title:
+  //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
+
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{ 
+        data: yData,
+        borderColor: "#45ffbc",
+        fill: false,
+        label: "Key1ESP" 
+      }]
+    },
+    options: {
+      legend: {display: true}
+    }
+  });
+  
+  return obj.Key1ESP.length;
 }
 
 function addRowToTable(inTS, inKey, inValue){
@@ -526,6 +591,15 @@ function get_DeviceInfo(){
 	  makeRequest(TB_URL+DEV_ID+CONTEXT+SCOPE); 
 }
 
+function get_Timeseries(){
+    var TimeKey = "Key1ESP";
+    console.log("in get_DeviceInfo: " + TimeKey);      
+    
+    //prepareRequest(devID, devScope);
+    var URL = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
+    
+    makeRequest(URL, "Timeseries"); 
+}
 
 // Globarl variable with the list of keys
 var TB_URL  = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/"; 

@@ -71,6 +71,16 @@
         <button type="button" class="btn btn-success add-new btn-block btn-lg"><i class="fa fa-plus"></i> Send Value</button>
 </div>
 
+<div class="w3-row w3-border">
+        <h2>Get TimeSeries</h2>  
+  	  	<label for="TimeKey">Key:     </label> <input type="text" id="TimeKey"   name="TimeKey">
+  	  	<label for="TimeValue">Value: </label> <input type="text" id="TimeValue" name="TimeValue">
+        <button type="button" onclick="get_Timeseries()"><i class="fa fa-plus"></i> Get Timeseries</button>
+        <div >
+            <canvas id="myChart" style="width:100%;max-width:600px">"No Value"</canvas>
+        </div>
+</div>
+
 <!-- TABLE !-->
     <div class="container">
                 <div class="table-responsive">
@@ -110,6 +120,7 @@
     <script src="js/jquery/jquery.cookie.js"></script>
     <script src="js/bs/bootstrap.min.js"></script>
     <script src="js/bs/bootstrap.touchspin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Fire base -->
     <!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script> -->
     <!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script> -->
