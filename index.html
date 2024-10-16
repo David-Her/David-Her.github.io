@@ -73,11 +73,16 @@
 
 <div class="w3-row w3-border">
         <h2>Get TimeSeries</h2>  
-  	  	<label for="TimeKey">Key:     </label> <input type="text" id="TimeKey"   name="TimeKey">
-  	  	<label for="TimeValue">Value: </label> <input type="text" id="TimeValue" name="TimeValue">
+  	  	<label for="TimeKey">Key:     </label><input type="text" id="TimeKey" value="Key1ESP"  name="TimeKey">
+  	  	<label for="TimeValue">Time window: </label> <input type="text" id="TimeValue" value = "1 Dia" name="TimeValue">
         <button type="button" onclick="get_Timeseries()"><i class="fa fa-plus"></i> Get Timeseries</button>
-        <div >
-            <canvas id="myChart" style="width:100%;max-width:600px">"No Value"</canvas>
+        <div class="w3-row w3-border">
+            <div class="w3-container w3-half">
+                <canvas id="myChart" style="width:100%;max-width:600px">"No Value"</canvas>
+            </div>
+            <div class="w3-container w3-half">
+                <canvas id="myChart2" style="width:100%;max-width:600px">"No Value"</canvas>
+            </div>
         </div>
 </div>
 

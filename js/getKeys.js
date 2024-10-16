@@ -243,6 +243,22 @@ function decodeTimeseries(text){
     }
   });
   
+  new Chart("myChart2", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{ 
+        data: yData,
+        borderColor: "#45ffbc",
+        fill: false,
+        label: "Key1ESP" 
+      }]
+    },
+    options: {
+      legend: {display: true}
+    }
+  });
+  
   return obj.Key1ESP.length;
 }
 
@@ -593,17 +609,25 @@ function get_DeviceInfo(){
 
 function get_Timeseries(){
     var TimeKey = "Key1ESP";
-    console.log("in get_DeviceInfo: " + TimeKey);      
+    console.log("in get_DeviceInfo: " + TimeKey);
     
     //prepareRequest(devID, devScope);
-    var URL = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
+    var startDate   = 1729062000000; //Date.now() -
+    var endDate     = 1729065600000;   
     
-    makeRequest(URL, "Timeseries"); 
+    //var URL_OK = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
+    var URL_OK = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
+    var URL_2 = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs='+startDate+'&endTs='+endDate+'&interval=0&limit=100&useStrictDataTypes=false';
+//.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1729099087153&endTs=1729099173553&interval=0&limit=100&useStrictDataTypes=false 
+//.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false (getKeys.js, line 78)
+    
+    //var URL = TB2URL + 'DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs='+startDate+'&endTs='+date+'&interval=0&limit=100&useStrictDataTypes=false';
+    makeRequest(URL_2, "Timeseries"); 
 }
 
 // Globarl variable with the list of keys
 var TB_URL  = "https://thingsboard.cloud/api/plugins/telemetry/DEVICE/"; 
-var TB2URL  = "https://thingsboard.cloud/api/plugins/telemetry/";
+var TB2URL  = 'https://thingsboard.cloud/api/plugins/telemetry/';
 var TB4URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/telemetry";
 var TB5URL  = "https://thingsboard.cloud/api/v1/mvktomg51m6wwigo38fa/attributes";
 var CONTEXT = "/values/attributes/";
