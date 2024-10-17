@@ -203,27 +203,44 @@ function decodeTimeseries(text){
 	
   console.log("In decodeTimeseries:: text:");
   //console.log(text);
-  obj = JSON.parse(text);
+  var arrayToPlot;
+  obj = JSON.parse(text,function (key, value){
+  if (key == TimeKey) {
+      // console.log("FOUND TimeKey");
+      arrayToPlot = value
+      return value;
+  } else {
+      // console.log(key);
+      return value;
+  }
+});
   //console.log("In decode:: obj:");
   console.log(obj);
-  var arraySize = obj.Key1ESP.length;
+  //console.log(obj[0]);
+  
+  console.log(arrayToPlot);
+  //console.log(obj[0]);
+  
+  
+  var arraySize = arrayToPlot.length;
   console.log(arraySize);
   var temp=0;
   var avg=0;
   const xValues = new Array(arraySize);
   const yData   = new Array(arraySize);
-  // Add Elemet into an Array
-  // fruits.push("Lemon");  // Adds a new element (Lemon) to fruits
-  for(var i=0; i<obj.Key1ESP.length; i++){
-    // console.log("Key #"+i);
+
+  // Read and plot the data of the JSON Obj
+  /*for(var i=0; i<obj.Key1ESP.length; i++){
     xValues[i] =  obj.Key1ESP[i].ts;;
     yData[i]   =  obj.Key1ESP[i].value;;
-    // console.log(xValues[i] + " - " + yData[i]);
-	//var d = new Date(obj[1].lastUpdateTs);
-	//var dateTS = (d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() +' - ' + d.getHours() + ':' + d.getMinutes());
-	//addRowToTable(dateTS, obj[i].key, obj[i].value);
+  }*/
+  for(var i=0; i<arrayToPlot.length; i++){
+    xValues[i] =  arrayToPlot[i].ts;;
+    yData[i]   =  arrayToPlot[i].value;;
   }
-    console.log("xData size: " + xValues.length);
+  
+  
+  console.log("xData size: " + xValues.length);
   // to change the table title:
   //document.getElementById('header_numOfKeys').innerHTML = "Active Keys: #"+obj.result.length;
 
@@ -259,7 +276,8 @@ function decodeTimeseries(text){
     }
   });
   
-  return obj.Key1ESP.length;
+  //return obj.Key1ESP.length;
+  return arrayToPlot.length;
 }
 
 function addRowToTable(inTS, inKey, inValue){
@@ -608,7 +626,8 @@ function get_DeviceInfo(){
 }
 
 function get_Timeseries(){
-    var TimeKey = "Key1ESP";
+    	  
+    TimeKey = document.getElementById("TimeKey").value;
     console.log("in get_DeviceInfo: " + TimeKey);
     
     //prepareRequest(devID, devScope);
@@ -617,7 +636,7 @@ function get_Timeseries(){
     
     //var URL_OK = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
     var URL_OK = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false';
-    var URL_2 = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs='+startDate+'&endTs='+endDate+'&interval=0&limit=100&useStrictDataTypes=false';
+    var URL_2 = 'https://thingsboard.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys='+TimeKey+'&startTs='+startDate+'&endTs='+endDate+'&interval=0&limit=100&useStrictDataTypes=false';
 //.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1729099087153&endTs=1729099173553&interval=0&limit=100&useStrictDataTypes=false 
 //.cloud/api/plugins/telemetry/DEVICE/e11c4010-711d-11ef-9db3-51985cbac8e9/values/timeseries?keys=Key1ESP&startTs=1728856800000&endTs=1728994871422&interval=0&limit=100&useStrictDataTypes=false (getKeys.js, line 78)
     
@@ -634,6 +653,7 @@ var CONTEXT = "/values/attributes/";
 var CON_PUB = "/attributes/";
 var SCOPE   = "empty";
 var DEV_ID  = "empty";
+var TimeKey = "emptyKey";
 
 // Timeseries
 /* curl -X 'GET' \
