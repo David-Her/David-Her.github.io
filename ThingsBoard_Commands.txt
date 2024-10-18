@@ -1,0 +1,683 @@
+    "entityType": "USER",
+    "id": "3a1798f0-711d-11ef-a435-f70964ded0d7"
+
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+
+	"entityType": "ENTITY_GROUP",
+	"id": "39d4c390-711d-11ef-a435-f70964ded0d7"
+
+	"entityType": "ENTITY_GROUP",
+	"id": "39da1ac0-711d-11ef-a435-f70964ded0d7"
+
+    "entityType": "CUSTOMER",
+    "id": "13814000-1dd2-11b2-8080-808080808080"
+		"39d42750-711d-11ef-a435-f70964ded0d7" ???
+
+USER: 3a1798f0-711d-11ef-a435-f70964ded0d7
+DEV:  e11c4010-711d-11ef-9db3-51985cbac8e9
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/user/3a1798f0-711d-11ef-a435-f70964ded0d7' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  {
+  "id": {
+    "entityType": "USER",
+    "id": "3a1798f0-711d-11ef-a435-f70964ded0d7"
+  },
+  "createdTime": 1726155581439,
+  "tenantId": {
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+  },
+  "customerId": {
+    "entityType": "CUSTOMER",
+    "id": "13814000-1dd2-11b2-8080-808080808080"
+  },
+  "email": "davidbonn18@gmail.com",
+  "authority": "TENANT_ADMIN",
+  "firstName": "D",
+  "lastName": "H",
+  "phone": "+491793468097",
+  "customMenuId": null,
+  "version": 17,
+  "name": "davidbonn18@gmail.com",
+  "additionalInfo": {
+    "lang": "en_US",
+    "authProviderName": "Google",
+    "lastLoginTs": 1729255496379,
+    "privacyPolicyAccepted": true,
+    "termsOfUseAccepted": true,
+    "userCredentialsEnabled": true,
+    "homeDashboardHideToolbar": false,
+    "failedLoginAttempts": 0,
+    "notDisplayWelcome": true
+  },
+  "ownerId": {
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+  }
+}
+
+
+USER: 3a1798f0-711d-11ef-a435-f70964ded0d7
+DEV:  e11c4010-711d-11ef-9db3-51985cbac8e9
+
+
+
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/entityGroups/TENANT/39c00310-711d-11ef-a435-f70964ded0d7/DEVICE' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  [
+  {
+    "id": {
+      "entityType": "ENTITY_GROUP",
+      "id": "39d4c390-711d-11ef-a435-f70964ded0d7"
+    },
+    "createdTime": 1726155581001,
+    "type": "DEVICE",
+    "name": "All",
+    "ownerId": {
+      "entityType": "TENANT",
+      "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+    },
+    "additionalInfo": null,
+    "configuration": {
+      "columns": [
+        {
+          "type": "ENTITY_FIELD",
+          "key": "created_time",
+          "sortOrder": "DESC"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "name",
+          "sortOrder": "NONE"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "device_profile",
+          "sortOrder": "NONE"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "label",
+          "sortOrder": "NONE"
+        }
+      ],
+      "settings": {},
+      "actions": {}
+    },
+    "externalId": null,
+    "version": 1,
+    "ownerIds": [
+      {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      }
+    ],
+    "groupAll": true,
+    "edgeGroupAll": false
+  }
+]
+
+---------------------------------------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/usage' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  {
+  "devices": 2,
+  "maxDevices": 30,
+  "assets": 0,
+  "maxAssets": 30,
+  "customers": 0,
+  "maxCustomers": 5,
+  "users": 1,
+  "maxUsers": 5,
+  "dashboards": 1,
+  "maxDashboards": 25,
+  "transportMessages": 31720,
+  "maxTransportMessages": 5000000,
+  "jsExecutions": 0,
+  "tbelExecutions": 0,
+  "maxJsExecutions": 1000000,
+  "maxTbelExecutions": 0,
+  "emails": 4,
+  "maxEmails": 100,
+  "sms": 3,
+  "maxSms": 10,
+  "smsEnabled": null,
+  "alarms": 5,
+  "maxAlarms": 200
+}
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/userInfos/all?pageSize=100&page=0' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+
+
+
+
+{
+  "data": [
+    {
+      "id": {
+        "entityType": "USER",
+        "id": "3a1798f0-711d-11ef-a435-f70964ded0d7"
+      },
+      "createdTime": 1726155581439,
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "13814000-1dd2-11b2-8080-808080808080"
+      },
+      "email": "davidbonn18@gmail.com",
+      "authority": "TENANT_ADMIN",
+      "firstName": "D",
+      "lastName": "H",
+      "phone": "+491793468097",
+      "customMenuId": null,
+      "version": 17,
+      "ownerName": null,
+      "groups": [
+        {
+          "id": {
+            "entityType": "ENTITY_GROUP",
+            "id": "39da1ac0-711d-11ef-a435-f70964ded0d7"
+          },
+          "name": "Tenant Administrators"
+        }
+      ],
+      "name": "davidbonn18@gmail.com",
+      "ownerId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "additionalInfo": {
+        "lang": "en_US",
+        "authProviderName": "Google",
+        "lastLoginTs": 1729255496379,
+        "privacyPolicyAccepted": true,
+        "termsOfUseAccepted": true,
+        "userCredentialsEnabled": true,
+        "homeDashboardHideToolbar": false,
+        "failedLoginAttempts": 0,
+        "notDisplayWelcome": true
+      }
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 1,
+  "hasNext": false
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/entityGroup/39da1ac0-711d-11ef-a435-f70964ded0d7' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  {
+  "id": {
+    "entityType": "ENTITY_GROUP",
+    "id": "39da1ac0-711d-11ef-a435-f70964ded0d7"
+  },
+  "createdTime": 1726155581036,
+  "type": "USER",
+  "name": "Tenant Administrators",
+  "ownerId": {
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+  },
+  "additionalInfo": {
+    "description": "Autogenerated Tenant Administrators group with all permissions."
+  },
+  "configuration": {
+    "columns": [
+      {
+        "type": "ENTITY_FIELD",
+        "key": "created_time",
+        "sortOrder": "DESC"
+      },
+      {
+        "type": "ENTITY_FIELD",
+        "key": "first_name",
+        "sortOrder": "NONE"
+      },
+      {
+        "type": "ENTITY_FIELD",
+        "key": "last_name",
+        "sortOrder": "NONE"
+      },
+      {
+        "type": "ENTITY_FIELD",
+        "key": "email",
+        "sortOrder": "NONE"
+      }
+    ],
+    "settings": {},
+    "actions": {}
+  },
+  "externalId": null,
+  "version": 1,
+  "ownerIds": [
+    {
+      "entityType": "TENANT",
+      "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+    }
+  ],
+  "groupAll": false,
+  "edgeGroupAll": false
+}
+
+-------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/entityGroupInfos/DEVICE?pageSize=100&page=0' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  {
+  "data": [
+    {
+      "id": {
+        "entityType": "ENTITY_GROUP",
+        "id": "39d4c390-711d-11ef-a435-f70964ded0d7"
+      },
+      "name": "All"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 1,
+  "hasNext": false
+}
+
+
+------------------------------------------------------------------------------------------------
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/entityGroupInfos/CUSTOMER?pageSize=100&page=0' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  {
+  "data": [
+    {
+      "id": {
+        "entityType": "ENTITY_GROUP",
+        "id": "39d42750-711d-11ef-a435-f70964ded0d7"
+      },
+      "name": "All"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 1,
+  "hasNext": false
+}
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/entityGroups?entityGroupIds=39d4c390-711d-11ef-a435-f70964ded0d7' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  [
+  {
+    "id": {
+      "entityType": "ENTITY_GROUP",
+      "id": "39d4c390-711d-11ef-a435-f70964ded0d7"
+    },
+    "createdTime": 1726155581001,
+    "type": "DEVICE",
+    "name": "All",
+    "ownerId": {
+      "entityType": "TENANT",
+      "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+    },
+    "additionalInfo": null,
+    "configuration": {
+      "columns": [
+        {
+          "type": "ENTITY_FIELD",
+          "key": "created_time",
+          "sortOrder": "DESC"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "name",
+          "sortOrder": "NONE"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "device_profile",
+          "sortOrder": "NONE"
+        },
+        {
+          "type": "ENTITY_FIELD",
+          "key": "label",
+          "sortOrder": "NONE"
+        }
+      ],
+      "settings": {},
+      "actions": {}
+    },
+    "externalId": null,
+    "version": 1,
+    "ownerIds": [
+      {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      }
+    ],
+    "groupAll": true,
+    "edgeGroupAll": false
+  }
+]
+
+
+------------------------------------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/device-connectivity/e11c4010-711d-11ef-9db3-51985cbac8e9' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  {
+  "mqtt": {
+    "mqtt": "mosquitto_pub -d -q 1 -h mqtt.thingsboard.cloud -p 1883 -t v1/devices/me/telemetry -i \"f024vrjfrdyzw65vqde4\" -u \"3gde4gtwc198pt1aqx0k\" -m \"{temperature:25}\"",
+    "mqtts": [
+      "curl -f -S -o tb-cloud-root-ca.pem https://thingsboard.cloud/api/device-connectivity/mqtts/certificate/download",
+      "mosquitto_pub -d -q 1 --cafile tb-cloud-root-ca.pem -h mqtt.thingsboard.cloud -p 8883 -t v1/devices/me/telemetry -i \"f024vrjfrdyzw65vqde4\" -u \"3gde4gtwc198pt1aqx0k\" -m \"{temperature:25}\""
+    ],
+    "docker": {
+      "mqtt": "docker run --rm -it thingsboard/mosquitto-clients mosquitto_pub -d -q 1 -h mqtt.thingsboard.cloud -p 1883 -t v1/devices/me/telemetry -i \"f024vrjfrdyzw65vqde4\" -u \"3gde4gtwc198pt1aqx0k\" -m \"{temperature:25}\"",
+      "mqtts": "docker run --rm -it thingsboard/mosquitto-clients /bin/sh -c \"curl -f -S -o tb-cloud-root-ca.pem https://thingsboard.cloud/api/device-connectivity/mqtts/certificate/download && mosquitto_pub -d -q 1 --cafile tb-cloud-root-ca.pem -h mqtt.thingsboard.cloud -p 8883 -t v1/devices/me/telemetry -i \"f024vrjfrdyzw65vqde4\" -u \"3gde4gtwc198pt1aqx0k\" -m \"{temperature:25}\"\""
+    }
+  }
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/tenant/devices?deviceName=Dev_Test1' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  {
+  "id": {
+    "entityType": "DEVICE",
+    "id": "e11c4010-711d-11ef-9db3-51985cbac8e9"
+  },
+  "createdTime": 1726155861649,
+  "tenantId": {
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+  },
+  "customerId": {
+    "entityType": "CUSTOMER",
+    "id": "13814000-1dd2-11b2-8080-808080808080"
+  },
+  "name": "Dev_Test1",
+  "type": "default",
+  "label": "",
+  "deviceProfileId": {
+    "entityType": "DEVICE_PROFILE",
+    "id": "39e03540-711d-11ef-a435-f70964ded0d7"
+  },
+  "firmwareId": null,
+  "softwareId": null,
+  "externalId": null,
+  "version": 1,
+  "additionalInfo": {
+    "gateway": false,
+    "overwriteActivityTime": false,
+    "description": ""
+  },
+  "ownerId": {
+    "entityType": "TENANT",
+    "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+  },
+  "deviceData": {
+    "configuration": {
+      "type": "DEFAULT"
+    },
+    "transportConfiguration": {
+      "type": "DEFAULT"
+    }
+  }
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/tenant/devices?pageSize=100&page=0' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  {
+  "data": [
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "8beeb200-7e59-11ef-92ef-05ff0bb08a5f"
+      },
+      "createdTime": 1727610853664,
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "13814000-1dd2-11b2-8080-808080808080"
+      },
+      "name": "Gateway1",
+      "type": "default",
+      "label": "",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "39e03540-711d-11ef-a435-f70964ded0d7"
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "externalId": null,
+      "version": 1,
+      "additionalInfo": {
+        "gateway": true
+      },
+      "ownerId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      }
+    },
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "e11c4010-711d-11ef-9db3-51985cbac8e9"
+      },
+      "createdTime": 1726155861649,
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "13814000-1dd2-11b2-8080-808080808080"
+      },
+      "name": "Dev_Test1",
+      "type": "default",
+      "label": "",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "39e03540-711d-11ef-a435-f70964ded0d7"
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "externalId": null,
+      "version": 1,
+      "additionalInfo": {
+        "gateway": false,
+        "overwriteActivityTime": false,
+        "description": ""
+      },
+      "ownerId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      }
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 2,
+  "hasNext": false
+}
+
+
+---------------------------------------------------------------------------------------------
+
+curl -X 'GET' \
+  'https://thingsboard.cloud/api/user/devices?pageSize=100&page=0' \
+  -H 'accept: application/json' \
+  -H 'X-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZGJvbm4xOEBnbWFpbC5jb20iLCJ1c2VySWQiOiIzYTE3OThmMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6IjY3ZTc0NWNjLTU5NDQtNDk1MS1hOTJjLTQ0NDg3ZTBjODc0NiIsImV4cCI6MTcyOTI3MTkwMiwiaXNzIjoidGhpbmdzYm9hcmQuY2xvdWQiLCJpYXQiOjE3MjkyNDMxMDIsImZpcnN0TmFtZSI6IkQiLCJsYXN0TmFtZSI6IkgiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsImlzQmlsbGluZ1NlcnZpY2UiOmZhbHNlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsInRlcm1zT2ZVc2VBY2NlcHRlZCI6dHJ1ZSwidGVuYW50SWQiOiIzOWMwMDMxMC03MTFkLTExZWYtYTQzNS1mNzA5NjRkZWQwZDciLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.aa3bWOErV6LNoiIzoppdXLhFDTXs-sgkMj1LyD7KsPquSA8VE1XpN1RoA2jsVLaBKOS30yDzIc9U35uWVWXO4A'
+  
+  
+  {
+  "data": [
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "8beeb200-7e59-11ef-92ef-05ff0bb08a5f"
+      },
+      "createdTime": 1727610853664,
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "13814000-1dd2-11b2-8080-808080808080"
+      },
+      "name": "Gateway1",
+      "type": "default",
+      "label": "",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "39e03540-711d-11ef-a435-f70964ded0d7"
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "externalId": null,
+      "version": 1,
+      "ownerId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "additionalInfo": {
+        "gateway": true
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      }
+    },
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "e11c4010-711d-11ef-9db3-51985cbac8e9"
+      },
+      "createdTime": 1726155861649,
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "13814000-1dd2-11b2-8080-808080808080"
+      },
+      "name": "Dev_Test1",
+      "type": "default",
+      "label": "",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "39e03540-711d-11ef-a435-f70964ded0d7"
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "externalId": null,
+      "version": 1,
+      "ownerId": {
+        "entityType": "TENANT",
+        "id": "39c00310-711d-11ef-a435-f70964ded0d7"
+      },
+      "additionalInfo": {
+        "gateway": false,
+        "overwriteActivityTime": false,
+        "description": ""
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      }
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 2,
+  "hasNext": false
+}
